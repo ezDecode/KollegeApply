@@ -1,0 +1,50 @@
+KOLLEGEAPPLY - LIVE DEPLOYMENT URLS
+====================================
+
+LANDING PAGES:
+--------------
+Amity University: https://amity-landing.netlify.app
+LPU: https://lpu-landing.netlify.app
+
+BACKEND API:
+------------
+API Base URL: https://kollegeapply.onrender.com
+Health Check: https://kollegeapply.onrender.com/health
+Universities: https://kollegeapply.onrender.com/api/universities
+Amity Fees: https://kollegeapply.onrender.com/api/fees/amity
+LPU Fees: https://kollegeapply.onrender.com/api/fees/lpu
+Config: https://kollegeapply.onrender.com/api/config
+
+PIPEDREAM:
+----------
+Webhook Endpoint: https://eoum6dsngvfgh19.m.pipedream.net
+
+GITHUB REPOSITORY:
+------------------
+https://github.com/ezDecode/KollegeApply
+
+DEPLOYMENT DATE:
+----------------
+November 13, 2025
+
+PROJECT STATUS:
+---------------
+✅ All requirements implemented
+✅ Mobile & desktop responsive
+✅ SSL enabled on all URLs
+✅ Lead forms integrated with Pipedream
+✅ APIs returning simple & nested JSON
+✅ Ready for submission
+
+TECHNICAL STACK:
+----------------
+Frontend: HTML5, CSS3, Vanilla JavaScript, TailwindCSS
+Backend: Node.js, Express.js
+Hosting: Netlify (Frontend), Render.com (Backend)
+API Integration: Pipedream Webhooks
+
+CONTACT INFORMATION:
+--------------------
+Repository Owner: ezDecode
+Project: KollegeApply
+Date: November 13, 2025

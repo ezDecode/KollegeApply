@@ -4,6 +4,9 @@ const indianStates = [
 
 const defaultCourses = ["B.Tech","MBA","BBA","BCA","MCA","B.Sc","M.Tech"];
 
+const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const API_BASE_URL = (window.APP_BACKEND_URL || (isLocalhost ? "http://localhost:3000" : "https://kollegeapply.onrender.com")).replace(/\/$/, "");
+
 function byId(id) { return document.getElementById(id); }
 
 function populateSelect(select, items) {
@@ -38,7 +41,7 @@ async function fetchFees() {
 			</div>`;
 	}
 	try {
-		const res = await fetch("../api-backend/fees.lpu.json", { cache: "no-store" });
+		const res = await fetch(`${API_BASE_URL}/api/fees/lpu`, { cache: "no-store" });
 		if (!res.ok) throw new Error("Failed to load fees");
 		const data = await res.json();
 		const html = Object.entries(data).map(([course, fee]) => `
@@ -71,14 +74,14 @@ window.PIPEDREAM_ENDPOINT = window.PIPEDREAM_ENDPOINT || null;
 
 async function loadConfig() {
 	try {
-		const res = await fetch("http://localhost:3000/api/config");
+		const res = await fetch(`${API_BASE_URL}/api/config`);
 		if (res.ok) {
 			const config = await res.json();
-			window.PIPEDREAM_ENDPOINT = config.pipedreamEndpoint || "https://eoum6dsngvfgh19.m.pipedream.net";
+			window.PIPEDREAM_ENDPOINT = config.pipedreamEndpoint || null;
 		}
 	} catch (err) {
-		console.warn("Failed to load config, using fallback endpoint", err);
-		window.PIPEDREAM_ENDPOINT = "https://eoum6dsngvfgh19.m.pipedream.net";
+		console.warn("Failed to load config, Pipedream endpoint not available", err);
+		window.PIPEDREAM_ENDPOINT = null;
 	}
 }
 
