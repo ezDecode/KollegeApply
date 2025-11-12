@@ -27,6 +27,19 @@ function asyncHandler(handler) {
 	};
 }
 
+app.get("/", (req, res) => {
+	res.json({ 
+		message: "KollegeApply API",
+		version: "1.0.0",
+		endpoints: {
+			health: "/health",
+			config: "/api/config",
+			universities: "/api/universities",
+			fees: "/api/fees/:university"
+		}
+	});
+});
+
 app.get("/health", (req, res) => {
 	res.json({ status: "ok", timestamp: Date.now() });
 });
