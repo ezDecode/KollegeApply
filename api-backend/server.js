@@ -33,7 +33,7 @@ function asyncHandler(handler) {
 }
 
 app.get("/health", (req, res) => {
-	res.json({ status: "ok", timestamp: Date.now().() });
+	res.json({ status: "ok", timestamp: new Date().toLocaleString() });
 });
 
 app.get("/api/config", (req, res) => {
