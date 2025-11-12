@@ -1,0 +1,11 @@
+# Node
+node_modules/
+.env
+
+# Build output
+dist/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db

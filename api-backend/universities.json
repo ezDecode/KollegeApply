@@ -1,0 +1,22 @@
+{
+	"universities": [
+		{
+			"key": "lpu",
+			"name": "Lovely Professional University",
+			"overview": "Modern private university with diverse programs and strong industry connections.",
+			"popularCourses": ["B.Tech", "MBA", "BBA", "BCA", "MCA"],
+			"placements": { "highest": null, "average": null, "recruiters": null },
+			"location": "Phagwara, Punjab"
+		},
+		{
+			"key": "amity",
+			"name": "Amity University",
+			"overview": "Leading private university network with global campuses and research focus.",
+			"popularCourses": ["B.Tech", "MBA", "BBA", "B.Sc", "M.Tech"],
+			"placements": { "highest": null, "average": null, "recruiters": null },
+			"location": "Noida, Uttar Pradesh (Main Campus)"
+		}
+	]
+}
+
+

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KollegeApply · Lovely Professional University</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@300;400;500;600&display=swap">
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+:root { font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color-scheme: dark; }
+body { font-family: inherit; }
+.material-symbols-rounded { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+        </style>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <script>
+                tailwind.config = {
+                        theme: {
+                                extend: {
+                                        colors: {
+                                                brand: {
+                                                        50: "#fff0e6",
+                                                        100: "#ffd9bf",
+                                                        200: "#ffb885",
+                                                        300: "#ff944a",
+                                                        400: "#ff7a1f",
+                                                        500: "#ff6905",
+                                                        600: "#e35600",
+                                                        700: "#b33f00",
+                                                        800: "#7a2b00",
+                                                        900: "#4a1800"
+                                                },
+                                                accent: {
+                                                        100: "#fcefe0",
+                                                        400: "#f7b45b",
+                                                        500: "#f08a13",
+                                                        600: "#cf7310"
+                                                },
+                                                surface: {
+                                                        50: "#0d111b",
+                                                        100: "#111726",
+                                                        200: "#161d33"
+                                                }
+                                        },
+                                        fontFamily: {
+                                                sans: ['"Inter Tight"', "ui-sans-serif", "system-ui"]
+                                        },
+                                        boxShadow: {
+                                                glow: "0 18px 50px -15px rgba(255, 122, 31, 0.45)"
+                                        }
+                                }
+                        }
+                };
+        </script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+        <div class="relative min-h-screen overflow-hidden">
+                <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(255,105,5,0.18),transparent_55%),radial-gradient(circle_at_85%_12%,rgba(59,130,246,0.16),transparent_40%),radial-gradient(circle_at_55%_75%,rgba(226,72,26,0.15),transparent_55%)]" aria-hidden="true"></div>
+
+                <header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/85 backdrop-blur">
+                        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+                                <a href="#hero" class="flex items-center gap-3 text-white no-underline">
+                                        <span class="material-symbols-rounded text-3xl text-brand-300">school</span>
+                                        <span class="text-lg font-semibold tracking-tight sm:text-xl">KollegeApply</span>
+                                </a>
+                                <nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 sm:flex">
+                                        <a href="#overview" class="transition hover:text-white/90 focus-visible:text-white/90">Overview</a>
+                                        <a href="#courses" class="transition hover:text-white/90 focus-visible:text-white/90">Courses</a>
+                                        <a href="#fees" class="transition hover:text-white/90 focus-visible:text-white/90">Fees</a>
+                                        <a href="#placements" class="transition hover:text-white/90 focus-visible:text-white/90">Placements</a>
+                                        <a href="#apply" class="transition hover:text-white/90 focus-visible:text-white/90">Apply</a>
+                                        <button id="toggle-accessibility" type="button" 
+                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-slate-800/80 px-4 py-2 text-slate-300 transition hover:bg-slate-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+                                                aria-label="Toggle accessibility view">
+                                                <span class="material-symbols-rounded text-lg leading-none">accessibility</span>
+                                                <span id="accessibility-status" class="text-xs font-semibold">Show</span>
+                                        </button>
+                                        <a href="../amity-landing/index.html"
+                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500/20 border border-blue-400/40 px-4 py-2 text-blue-200 transition hover:bg-blue-500/30 hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
+                                                <span class="material-symbols-rounded text-lg leading-none">swap_horiz</span>
+                                                <span class="text-sm font-semibold">Switch to Amity</span>
+                                        </a>
+                                        <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-4 py-2 text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+                                                <span class="material-symbols-rounded text-lg leading-none">headset_mic</span>
+                                                <span>Talk to us</span>
+                                        </a>
+                                </nav>
+                        </div>
+                </header>
+
+                <main class="relative z-10 pb-24">
+                        <section id="hero" class="bg-gradient-to-b from-brand-500/10 via-transparent to-transparent pt-16 pb-24">
+                                <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1.15fr,0.85fr]">
+                                        <div class="space-y-6">
+                                                <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-100">Featured</span>
+                                                <div class="space-y-4">
+                                                        <p class="flex items-center gap-2 text-sm font-medium text-slate-300">
+                                                                <span class="material-symbols-rounded text-base text-brand-300">location_on</span>
+                                                                <span>Phagwara, Punjab</span>
+                                                        </p>
+                                                        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Lovely Professional University</h1>
+                                                        <p class="max-w-xl text-lg text-slate-300">
+                                                                Build your future with India's largest private campus, industry-backed programs, and global alumni network.
+                                                        </p>
+                                                </div>
+                                                <div class="flex flex-wrap gap-3 text-xs">
+                                                        <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-400/40">
+                                                                <span class="material-symbols-rounded text-base">verified</span>
+                                                                NAAC A++ Accreditated
+                                                        </span>
+                                                        <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-400/40">
+                                                                <span class="material-symbols-rounded text-base">public</span>
+                                                                50+ Nations on Campus
+                                                        </span>
+                                                        <span class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-400/40">
+                                                                <span class="material-symbols-rounded text-base">workspace_premium</span>
+                                                                1100+ Recruiters
+                                                        </span>
+                                                </div>
+                                                <div class="flex flex-wrap gap-3">
+                                                        <a href="#apply" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
+                                                                <span class="material-symbols-rounded text-xl leading-none">assignment_add</span>
+                                                                <span>Enquire Now</span>
+                                                        </a>
+                                                        <button id="download-brochure" type="button" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+                                                                <span class="material-symbols-rounded text-xl leading-none">download</span>
+                                                                <span>Download Brochure</span>
+                                                        </button>
+                                                        <button id="open-fee-modal" type="button" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+                                                                <span class="material-symbols-rounded text-xl leading-none">receipt_long</span>
+                                                                <span>View Fee Structure</span>
+                                                        </button>
+                                                </div>
+                                        </div>
+                                        <div class="rounded-3xl border border-white/10 bg-slate-900/60 p-4 shadow-2xl ring-1 ring-white/10">
+                                                <img src="./assets/campus-hero.svg" alt="Lovely Professional University campus" class="h-full w-full rounded-2xl object-cover shadow-xl">
+                                        </div>
+                                </div>
+                        </section>
+
+                        <section id="overview" class="mx-auto max-w-6xl px-6 pb-16">
+                                <article id="accessibility-info" class="mb-8 rounded-3xl border border-brand-300/40 bg-brand-500/10 p-8 shadow-xl hidden">
+                                        <div class="flex items-start gap-4">
+                                                <span class="material-symbols-rounded text-3xl text-brand-200">accessibility_new</span>
+                                                <div class="flex-1">
+                                                        <h2 class="text-2xl font-semibold text-white sm:text-3xl">Accessibility Features</h2>
+                                                        <p class="mt-4 text-base leading-relaxed text-brand-100">
+                                                                Lovely Professional University is dedicated to creating an inclusive campus where every student can thrive. 
+                                                                We provide comprehensive accessibility support and facilities across our 600-acre campus.
+                                                        </p>
+                                                        <ul class="mt-4 grid gap-3 text-sm text-brand-100 md:grid-cols-2">
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">accessible</span>
+                                                                        <span>Barrier-free infrastructure with ramps, lifts, and accessible pathways</span>
+                                                                </li>
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">menu_book</span>
+                                                                        <span>Braille materials and audio books in the central library</span>
+                                                                </li>
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">support_agent</span>
+                                                                        <span>Dedicated accessibility support staff and peer mentors</span>
+                                                                </li>
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">developer_board</span>
+                                                                        <span>Assistive technology labs with specialized software and hardware</span>
+                                                                </li>
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">medical_services</span>
+                                                                        <span>On-campus health center with accessible medical facilities</span>
+                                                                </li>
+                                                                <li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
+                                                                        <span class="material-symbols-rounded text-xl text-brand-200">directions_bus</span>
+                                                                        <span>Accessible campus transportation and parking facilities</span>
+                                                                </li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </article>
+                                <article class="rounded-3xl border border-white/10 bg-surface-100/80 p-8 shadow-xl">
+                                        <h2 class="text-2xl font-semibold text-white sm:text-3xl">Overview</h2>
+                                        <p class="mt-4 text-base text-slate-300 leading-relaxed">
+                                                Lovely Professional University (LPU) is recognised for its sprawling 600-acre campus, strong global connections, and industry-integrated programmes across engineering, management, design, health sciences, liberal arts, and more. With live labs, international semester opportunities, and innovation driven classrooms, LPU focuses on career readiness and entrepreneurship.
+                                        </p>
+                                </article>
+                        </section>
+
+                        <section id="courses" class="mx-auto max-w-6xl px-6 pb-20">
+                                <div class="grid gap-12 lg:grid-cols-[1.2fr,0.8fr]">
+                                        <div class="space-y-10">
+                                                <article class="rounded-3xl border border-white/10 bg-surface-100/70 p-8 shadow-xl">
+                                                        <div class="flex items-center justify-between gap-4">
+                                                                <h3 class="text-xl font-semibold text-white">Popular Courses</h3>
+                                                                <span class="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">Updated</span>
+                                                        </div>
+                                                        <ul class="mt-4 grid gap-3 md:grid-cols-2 text-sm text-slate-200">
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">B.Tech (CSE, AI, Data Science)</li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">MBA (Finance, Marketing, HR)</li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">B.Design (UX/UI, Product Design)</li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">B.Pharm &amp; Health Sciences</li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">BBA &amp; Integrated MBA</li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">M.Tech (Civil, Mechanical, ECE)</li>
+                                                        </ul>
+                                                </article>
+                                                <article class="rounded-3xl border border-white/10 bg-surface-100/60 p-8 shadow-xl">
+                                                        <h3 class="text-xl font-semibold text-white">Facilities &amp; Student Life</h3>
+                                                        <ul class="mt-4 grid gap-3 md:grid-cols-2 text-sm text-slate-200">
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">science</span>
+                                                                        <span>State-of-the-art laboratories with industry grade equipment</span>
+                                                                </li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">stadia_controller</span>
+                                                                        <span>Olympic-size sports complex &amp; indoor stadium</span>
+                                                                </li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">maps_home_work</span>
+                                                                        <span>Smart hostels with 24x7 security &amp; Wi-Fi</span>
+                                                                </li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">flight_takeoff</span>
+                                                                        <span>Semester abroad &amp; international immersion programmes</span>
+                                                                </li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">diversity_3</span>
+                                                                        <span>200+ student clubs &amp; global cultural festivals</span>
+                                                                </li>
+                                                                <li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4 flex gap-3">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">lightbulb</span>
+                                                                        <span>Incubation centre with seed funding for startups</span>
+                                                                </li>
+                                                        </ul>
+                                                </article>
+                                        </div>
+                                        <aside class="space-y-6">
+                                                <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-2xl">
+                                                        <h3 class="flex items-center gap-2 text-xl font-semibold text-white">
+                                                                <span class="material-symbols-rounded text-2xl text-brand-200">trending_up</span>
+                                                                Placements snapshot
+                                                        </h3>
+                                                        <div class="mt-4 grid gap-4 text-center text-sm text-slate-200">
+                                                                <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-lg">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">workspace_premium</span>
+                                                                        <p class="mt-3 text-xl font-semibold text-white">₹ 62.72 LPA</p>
+                                                                        <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Highest Package</p>
+                                                                </div>
+                                                                <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-lg">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">payments</span>
+                                                                        <p class="mt-3 text-xl font-semibold text-white">₹ 7.5 LPA</p>
+                                                                        <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Average Package</p>
+                                                                </div>
+                                                                <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-lg">
+                                                                        <span class="material-symbols-rounded text-2xl text-brand-200">groups</span>
+                                                                        <p class="mt-3 text-xl font-semibold text-white">1100+</p>
+                                                                        <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Recruiters</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="rounded-3xl border border-brand-400/40 bg-brand-500/10 p-8 text-sm text-brand-100 shadow-lg">
+                                                        <div class="flex items-center gap-3 text-brand-100">
+                                                                <span class="material-symbols-rounded text-xl">tips_and_updates</span>
+                                                                <p class="text-base font-semibold tracking-tight">1:1 admission counselling</p>
+                                                        </div>
+                                                        <p class="mt-3 leading-relaxed text-brand-50/90">
+                                                                Get personalised program recommendations, scholarship guidance, and application support from our advisors.
+                                                        </p>
+                                                        <a href="#apply" class="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-200 transition hover:text-brand-50">
+                                                                <span>Talk to an expert</span>
+                                                                <span class="material-symbols-rounded text-lg leading-none">arrow_right_alt</span>
+                                                        </a>
+                                                </div>
+                                        </aside>
+                                </div>
+                        </section>
+
+                        <section id="apply" class="bg-slate-900/70 py-20">
+                                <div class="mx-auto max-w-4xl px-6">
+                                        <div class="rounded-3xl border border-white/10 bg-slate-950/80 p-8 shadow-2xl backdrop-blur">
+                                                <div class="flex flex-col gap-4 pb-6 md:flex-row md:items-center md:justify-between">
+                                                        <div>
+                                                                <h2 class="text-3xl font-semibold text-white sm:text-4xl">Ready to apply?</h2>
+                                                                <p class="text-sm text-slate-400">Fill in the form to connect with the LPU admissions team.</p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
+                                                                <span class="material-symbols-rounded text-xl text-brand-200">verified_user</span>
+                                                                Secure submission
+                                                        </div>
+                                                </div>
+                                                <form id="lead-form" class="grid gap-6 md:grid-cols-2" novalidate>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                Full Name
+                                                                <input type="text" name="fullName" required placeholder="Riya Singh" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                        </label>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                Email
+                                                                <input type="email" name="email" required placeholder="riya@email.com" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                        </label>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                Phone
+                                                                <input type="tel" name="phone" pattern="\\d{10}" required placeholder="9876543210" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                        </label>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                State
+                                                                <select name="state" required class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                                        <option value="">Select</option>
+                                                                </select>
+                                                        </label>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                Course Interested
+                                                                <select name="course" required class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                                        <option value="">Select</option>
+                                                                </select>
+                                                        </label>
+                                                        <label class="text-sm font-medium text-slate-200">
+                                                                Intake Year
+                                                                <select name="intake" required class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+                                                                        <option value="2025">2025</option>
+                                                                        <option value="2026">2026</option>
+                                                                        <option value="2027">2027</option>
+                                                                </select>
+                                                        </label>
+                                                        <label class="col-span-full flex items-center gap-3 rounded-2xl bg-slate-900/50 px-4 py-4 text-sm text-slate-300 ring-1 ring-white/10">
+                                                                <input type="checkbox" name="consent" required class="h-5 w-5 flex-shrink-0 rounded border-white/20 bg-slate-900 focus:ring-brand-400">
+                                                                <span>I agree to be contacted regarding my enquiry and confirm the details provided are accurate.</span>
+                                                        </label>
+                                                        <div class="col-span-full flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                                                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
+                                                                        <span class="material-symbols-rounded text-xl leading-none">send</span>
+                                                                        <span>Submit Application</span>
+                                                                </button>
+                                                                <p id="form-status" class="text-sm text-slate-400" role="status" aria-live="polite"></p>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </div>
+                        </section>
+                </main>
+
+                <footer id="contact" class="border-t border-white/5 bg-slate-950/90 py-8 backdrop-blur">
+                        <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+                                <p>© <span id="year"></span> KollegeApply. Educational content for aspiring students.</p>
+                                <div class="flex flex-wrap items-center gap-4 text-slate-400">
+                                        <a href="mailto:hello@kollegeapply.com" class="inline-flex items-center gap-2 transition hover:text-white/90">
+                                                <span class="material-symbols-rounded text-base">mail</span>
+                                                hello@kollegeapply.com
+                                        </a>
+                                        <a href="tel:+911234567890" class="inline-flex items-center gap-2 transition hover:text-white/90">
+                                                <span class="material-symbols-rounded text-base">call</span>
+                                                +91 12345 67890
+                                        </a>
+                                </div>
+                        </div>
+                </footer>
+        </div>
+
+        <div id="fee-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true">
+                <div class="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-slate-900/90 p-8 shadow-2xl">
+                        <button id="close-fee-modal" type="button" class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300" aria-label="Close modal">
+                                <span class="material-symbols-rounded">close</span>
+                        </button>
+                        <h4 id="fee-modal-title" class="text-xl font-semibold text-white">Fee Structure</h4>
+                        <div id="fee-table" class="mt-4 grid gap-3 text-sm text-slate-200"></div>
+                </div>
+        </div>
+
+        <script src="./script.js"></script>
+</body>
+</html>
