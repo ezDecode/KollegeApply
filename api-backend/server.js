@@ -46,8 +46,11 @@ app.get("/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
 	res.json({ 
-		pipedreamEndpoint: process.env.PIPEDREAM_ENDPOINT_API || null
-	});
+		pipedreamEndpoint: process.env.PIPEDREAM_ENDPOINT_API || null,
+		backendUrl: process.env.BACKEND_URL || null,
+		lpuLanding: process.env.LPU_LANDING_URL || null,
+		amityLanding: process.env.AMITY_LANDING_URL || null
+    });
 });
 
 app.get("/api/universities", asyncHandler(async (req, res) => {
