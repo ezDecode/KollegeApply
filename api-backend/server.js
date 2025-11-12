@@ -15,15 +15,10 @@ async function readJson(filename) {
 	if (jsonCache.has(filePath)) {
 		return jsonCache.get(filePath);
 	}
-	try {
-		const raw = await fs.readFile(filePath, "utf-8");
-		const parsed = JSON.parse(raw);
-		jsonCache.set(filePath, parsed);
-		return parsed;
-	} catch (error) {
-		error.message = `Failed to read ${filename}: ${error.message}`;
-		throw error;
-	}
+	const raw = await fs.readFile(filePath, "utf-8");
+	const parsed = JSON.parse(raw);
+	jsonCache.set(filePath, parsed);
+	return parsed;
 }
 
 function asyncHandler(handler) {
@@ -67,24 +62,17 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-	// eslint-disable-next-line no-console
-	console.error("[api-backend] error:", err);
+	console.error("Error:", err);
 	if (res.headersSent) {
 		return next(err);
-}
+	}
 	const status = err.code === "ENOENT" ? 404 : 500;
 	const message = status === 404 ? "Resource not found" : "Internal server error";
 	res.status(status).json({ error: message });
 });
 
 const port = process.env.PORT || 3000;
-const pipedreamEndpoint = process.env.PIPEDREAM_ENDPOINT_API;
 
 app.listen(port, () => {
 	console.log(`API listening on http://localhost:${port}`);
-	if (pipedreamEndpoint) {
-		console.log(`Pipedream endpoint configured: ${pipedreamEndpoint}`);
-	} else {
-		console.warn("Warning: PIPEDREAM_ENDPOINT_API not configured in .env file");
-	}
 });
