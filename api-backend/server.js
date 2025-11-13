@@ -3,92 +3,63 @@ require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs/promises");
-
 const app = express();
-app.use(cors());
-app.use(express.json());
-
 const jsonCache = new Map();
+app.use(cors());
+app.use(express.json({ limit: '1mb' }));
+app.use((req, res, next) => {
+	const start = Date.now();
+	res.on('finish', () => console.log(`${req.method} ${req.path} - ${res.statusCode} (${Date.now() - start}ms)`));
+	res.setHeader('X-Content-Type-Options', 'nosniff');
+	res.setHeader('X-Frame-Options', 'DENY');
+	res.setHeader('X-XSS-Protection', '1; mode=block');
+	next();
+});
 
 async function readJson(filename) {
 	const filePath = path.join(__dirname, filename);
-	if (jsonCache.has(filePath)) {
-		return jsonCache.get(filePath);
-	}
-	const raw = await fs.readFile(filePath, "utf-8");
-	const parsed = JSON.parse(raw);
-	jsonCache.set(filePath, parsed);
-	return parsed;
+	if (jsonCache.has(filePath)) return jsonCache.get(filePath);
+	const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
+	jsonCache.set(filePath, data);
+	return data;
 }
-
-function asyncHandler(handler) {
-	return (req, res, next) => {
-		Promise.resolve(handler(req, res, next)).catch(next);
-	};
-}
+const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
 app.get("/", (req, res) => {
-	res.json({ 
-		message: "KollegeApply API",
-		version: "1.0.0",
-		endpoints: {
-			health: "/health",
-			config: "/api/config",
-			universities: "/api/universities",
-			fees: "/api/fees/:university"
-		}
-	});
+	res.setHeader('Cache-Control', 'public, max-age=3600');
+	res.json({ message: "KollegeApply API", version: "1.0.0", endpoints: { health: "/health", config: "/api/config", universities: "/api/universities", fees: "/api/fees/:university" } });
 });
-
 app.get("/health", (req, res) => {
+	res.setHeader('Cache-Control', 'no-cache');
 	res.json({ status: "ok", timestamp: Date.now() });
 });
-
 app.get("/api/config", (req, res) => {
-	res.json({ 
-		pipedreamEndpoint: process.env.PIPEDREAM_ENDPOINT_API || null,
-		backendUrl: process.env.BACKEND_URL || null,
-		lpuLanding: process.env.LPU_LANDING_URL || null,
-		amityLanding: process.env.AMITY_LANDING_URL || null
-    });
+	res.setHeader('Cache-Control', 'private, max-age=300');
+	res.json({ pipedreamEndpoint: process.env.PIPEDREAM_ENDPOINT_API || null, backendUrl: process.env.BACKEND_URL || null, lpuLanding: process.env.LPU_LANDING_URL || null, amityLanding: process.env.AMITY_LANDING_URL || null });
 });
-
 app.get("/api/universities", asyncHandler(async (req, res) => {
-	const data = await readJson("universities.json");
-	res.json(data);
+	res.setHeader('Cache-Control', 'public, max-age=1800');
+	res.json(await readJson("universities.json"));
 }));
 
-const feeFileMap = Object.freeze({
-	lpu: "fees.lpu.json",
-	amity: "fees.amity.json"
-});
-
+const feeFileMap = Object.freeze({ lpu: "fees.lpu.json", amity: "fees.amity.json" });
 app.get("/api/fees/:university", asyncHandler(async (req, res) => {
-	const uniKey = (req.params.university || "").toLowerCase();
+	const uniKey = (req.params.university || "").toLowerCase().trim();
+	if (!uniKey) return res.status(400).json({ error: "University parameter is required", allowed: Object.keys(feeFileMap) });
 	const filename = feeFileMap[uniKey];
-	if (!filename) {
-		return res.status(404).json({ error: "University not found" });
-	}
-	const data = await readJson(filename);
-	res.json(data);
+	if (!filename) return res.status(404).json({ error: "University not found", allowed: Object.keys(feeFileMap) });
+	res.setHeader('Cache-Control', 'public, max-age=1800');
+	res.json(await readJson(filename));
 }));
 
-app.use((req, res) => {
-	res.status(404).json({ error: "Route not found" });
-});
-
+app.use((req, res) => res.status(404).json({ error: "Route not found", path: req.path, method: req.method }));
 app.use((err, req, res, next) => {
-	console.error("Error:", err);
-	if (res.headersSent) {
-		return next(err);
-	}
-	const status = err.code === "ENOENT" ? 404 : 500;
-	const message = status === 404 ? "Resource not found" : "Internal server error";
-	res.status(status).json({ error: message });
+	console.error('Error:', req.method, req.path, err.message);
+	if (err.stack) console.error(err.stack);
+	if (res.headersSent) return next(err);
+	const status = err.statusCode || (err.code === "ENOENT" ? 404 : 500);
+	res.status(status).json({ error: status === 404 ? "Resource not found" : "Internal server error", ...(process.env.NODE_ENV === 'development' && { details: err.message }) });
 });
 
 const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-	console.log(`API listening on http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`✓ API running on http://localhost:${port}\n✓ Env: ${process.env.NODE_ENV || 'development'}\n✓ Endpoints: /health, /api/config, /api/universities, /api/fees/:university`));
