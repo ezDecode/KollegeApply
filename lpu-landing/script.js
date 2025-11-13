@@ -4,10 +4,20 @@ const indianStates = [
 
 const defaultCourses = ["B.Tech","MBA","BBA","BCA","MCA","B.Sc","M.Tech"];
 
+const switchConfigKey = window.APP_SWITCH_CONFIG_KEY || "amityLanding";
+const defaultSwitchUrl = (window.APP_SWITCH_URL || "https://amity-landing.netlify.app").replace(/\/$/, "");
+
 const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 const API_BASE_URL = (window.APP_BACKEND_URL || (isLocalhost ? "http://localhost:3000" : "https://kollegeapply.onrender.com")).replace(/\/$/, "");
 
 function byId(id) { return document.getElementById(id); }
+
+function setSwitchLink(url) {
+	const link = byId("switch-university");
+	if (link && url) {
+		link.href = url;
+	}
+}
 
 function populateSelect(select, items) {
 	if (!select) return;
@@ -78,10 +88,21 @@ async function loadConfig() {
 		if (res.ok) {
 			const config = await res.json();
 			window.PIPEDREAM_ENDPOINT = config.pipedreamEndpoint || null;
+			const switchTarget = switchConfigKey ? config[switchConfigKey] : null;
+			if (switchTarget) {
+				setSwitchLink(switchTarget);
+			} else if (defaultSwitchUrl) {
+				setSwitchLink(defaultSwitchUrl);
+			}
+		} else if (defaultSwitchUrl) {
+			setSwitchLink(defaultSwitchUrl);
 		}
 	} catch (err) {
 		console.warn("Failed to load config, Pipedream endpoint not available", err);
 		window.PIPEDREAM_ENDPOINT = null;
+		if (defaultSwitchUrl) {
+			setSwitchLink(defaultSwitchUrl);
+		}
 	}
 }
 
@@ -153,6 +174,9 @@ function downloadBrochure() {
 }
 
 function init() {
+	if (defaultSwitchUrl) {
+		setSwitchLink(defaultSwitchUrl);
+	}
 	loadConfig();
 	const year = byId("year");
 	if (year) year.textContent = new Date().getFullYear();
