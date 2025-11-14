@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KollegeApply · Discover Top Universities</title>
+	<title>KollegeApply · Amity University</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet"
@@ -22,41 +22,205 @@
 			color-scheme: dark;
 		}
 
-		@keyframes float-slow {
-			0%, 100% { transform: translate3d(0, 0, 0); }
-			50% { transform: translate3d(12px, -18px, 0); }
-		}
-
-		@keyframes fade-in {
-			from { opacity: 0; transform: translateY(18px); }
-			to { opacity: 1; transform: translateY(0); }
-		}
-
-		@keyframes slide-up {
-			from { opacity: 0; transform: translateY(30px); }
-			to { opacity: 1; transform: translateY(0); }
-		}
-
 		.material-symbols-rounded {
 			font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background: radial-gradient(circle at 20% 30%, rgba(53, 112, 255, 0.08), transparent 50%),
+				radial-gradient(circle at 80% 70%, rgba(53, 112, 255, 0.05), transparent 50%);
+			z-index: -1;
+			pointer-events: none;
+		}
+
+		/* Smooth transitions */
+		* {
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		/* AI-ish Glow Animation */
+		@keyframes ai-glow {
+			0%, 100% {
+				box-shadow: 0 0 20px rgba(53, 112, 255, 0.3),
+					0 0 40px rgba(53, 112, 255, 0.2),
+					0 0 60px rgba(53, 112, 255, 0.1);
+			}
+			50% {
+				box-shadow: 0 0 30px rgba(53, 112, 255, 0.5),
+					0 0 60px rgba(53, 112, 255, 0.3),
+					0 0 90px rgba(53, 112, 255, 0.2);
+			}
+		}
+
+		@keyframes shimmer {
+			0% {
+				background-position: -1000px 0;
+			}
+			100% {
+				background-position: 1000px 0;
+			}
+		}
+
+		@keyframes pulse-glow {
+			0%, 100% {
+				opacity: 1;
+				transform: scale(1);
+			}
+			50% {
+				opacity: 0.8;
+				transform: scale(1.05);
+			}
+		}
+
+		@keyframes border-glow {
+			0%, 100% {
+				border-color: rgba(255, 255, 255, 0.1);
+				box-shadow: 0 0 0 0 rgba(53, 112, 255, 0);
+			}
+			50% {
+				border-color: rgba(53, 112, 255, 0.5);
+				box-shadow: 0 0 20px rgba(53, 112, 255, 0.3),
+					inset 0 0 20px rgba(53, 112, 255, 0.1);
+			}
+		}
+
+		/* Button AI Hover Effects */
+		.btn-ai-primary {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-ai-primary::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+			transition: left 0.5s;
+		}
+
+		.btn-ai-primary:hover::before {
+			left: 100%;
+		}
+
+		.btn-ai-primary:hover {
+			animation: ai-glow 2s ease-in-out infinite;
+		}
+
+		/* Card AI Hover Effects */
+		.card-ai {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.card-ai::before {
+			content: "";
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: radial-gradient(circle, rgba(53, 112, 255, 0.1) 0%, transparent 70%);
+			opacity: 0;
+			transition: opacity 0.5s;
+			pointer-events: none;
+		}
+
+		.card-ai:hover::before {
+			opacity: 1;
+		}
+
+		.card-ai:hover {
+			border-color: rgba(53, 112, 255, 0.4);
+			box-shadow: 0 10px 40px rgba(53, 112, 255, 0.15),
+				0 0 0 1px rgba(53, 112, 255, 0.2),
+				inset 0 0 30px rgba(53, 112, 255, 0.05);
+			transform: translateY(-4px) scale(1.01);
+		}
+
+		/* Icon AI Hover Effects */
+		.icon-ai {
+			transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+
+		.card-ai:hover .icon-ai {
+			transform: scale(1.15) rotate(5deg);
+			filter: drop-shadow(0 0 10px rgba(53, 112, 255, 0.6));
+		}
+
+		/* Input AI Focus Effects */
+		.input-ai:focus {
+			border-color: rgba(53, 112, 255, 0.6);
+			box-shadow: 0 0 0 3px rgba(53, 112, 255, 0.1),
+				0 0 20px rgba(53, 112, 255, 0.2),
+				inset 0 0 10px rgba(53, 112, 255, 0.05);
+			background: rgba(15, 23, 42, 0.8);
+		}
+
+		/* Stat Card AI Effects */
+		.stat-card-ai {
+			position: relative;
+		}
+
+		.stat-card-ai::after {
+			content: "";
+			position: absolute;
+			inset: -2px;
+			border-radius: inherit;
+			padding: 2px;
+			background: linear-gradient(135deg, rgba(53, 112, 255, 0.3), rgba(53, 112, 255, 0.1), transparent);
+			-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
+			opacity: 0;
+			transition: opacity 0.4s;
+		}
+
+		.stat-card-ai:hover::after {
+			opacity: 1;
+		}
+
+		.stat-card-ai:hover {
+			animation: pulse-glow 2s ease-in-out infinite;
+		}
+
+		/* Nav Link AI Effects */
+		.nav-link-ai {
+			position: relative;
+		}
+
+		.nav-link-ai::after {
+			content: "";
+			position: absolute;
+			bottom: -4px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, rgba(53, 112, 255, 0.8), rgba(53, 112, 255, 0.4));
+			transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			box-shadow: 0 0 10px rgba(53, 112, 255, 0.5);
+		}
+
+		.nav-link-ai:hover::after {
+			width: 100%;
+		}
 	</style>
-	<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+	<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 	<script>
 		tailwind.config = {
 			theme: {
 				extend: {
 					colors: {
 						brand: {
-							50: "#eef4ff", 100: "#d8e4ff", 200: "#b1c8ff", 300: "#88aaff",
-							400: "#5f8bff", 500: "#3570ff", 600: "#1f58e6", 700: "#1744b3",
-							800: "#113083", 900: "#0c2260"
-						},
-						accent: {
-							100: "#ffe8c7", 400: "#f9a826", 500: "#f3960c", 600: "#cc7a07"
-						},
-						surface: {
-							50: "#0d1220", 100: "#101529", 200: "#151c34"
+							400: "#3570ff",
+							500: "#1f58e6",
+							600: "#1744b3"
 						}
 					},
 					fontFamily: {
@@ -68,377 +232,245 @@
 	</script>
 </head>
 
-<body class="bg-slate-950 text-slate-100 antialiased font-sans relative">
-	<div class="relative min-h-screen overflow-hidden">
-		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(53,112,255,0.08),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(249,168,38,0.06),transparent_50%)] opacity-90"
-			aria-hidden="true"></div>
-
-		<header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/90 backdrop-blur-md shadow-sm shadow-black/10">
+<body class="bg-slate-950 text-slate-100 antialiased font-sans">
+	<div class="min-h-screen">
+		<!-- Header -->
+		<header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/95 backdrop-blur-xl">
 			<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-				<a href="#hero" class="group relative flex items-center gap-3 text-white no-underline transition-all duration-200">
-					<span class="material-symbols-rounded text-3xl text-brand-400 transition-colors duration-200 group-hover:text-brand-300">school</span>
-					<span class="text-xl font-bold tracking-tight sm:text-2xl text-white">
-						KollegeApply
-					</span>
+				<a href="#hero" class="flex items-center gap-2.5 text-white no-underline transition-opacity hover:opacity-80">
+					<span class="material-symbols-rounded text-2xl text-brand-400">school</span>
+					<span class="text-lg font-medium tracking-tight">KollegeApply</span>
 				</a>
-				<nav class="hidden items-center gap-8 text-sm font-medium text-slate-400 sm:flex">
-					<a href="#overview" class="relative transition-colors duration-200 hover:text-white">Overview</a>
-					<a href="#courses" class="relative transition-colors duration-200 hover:text-white">Courses</a>
-					<a href="#placements" class="relative transition-colors duration-200 hover:text-white">Placements</a>
-					<a href="#apply" class="relative transition-colors duration-200 hover:text-white">Apply</a>
+				<nav class="hidden items-center gap-8 text-sm font-normal text-slate-400 sm:flex">
+					<a href="#courses" class="nav-link-ai transition-colors duration-200 hover:text-white">Courses</a>
+					<a href="#apply" class="nav-link-ai transition-colors duration-200 hover:text-white">Apply</a>
 					<a id="switch-university" href="https://lpu-landing.netlify.app"
-						class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-orange-500/15 border border-orange-400/30 px-5 py-2.5 text-orange-300 transition-all duration-200 hover:bg-orange-500/25 hover:text-orange-200">
-						<span class="material-symbols-rounded text-lg leading-none transition-transform duration-200 group-hover:rotate-90">swap_horiz</span>
-						<span class="text-sm font-medium">Switch to LPU</span>
-					</a>
-					<a href="#contact"
-						class="relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-white font-medium shadow-sm transition-all duration-200 hover:bg-brand-600">
-						<span class="material-symbols-rounded text-lg leading-none">headset_mic</span>
-						<span>Talk to us</span>
+						class="card-ai rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-brand-400/30">
+						Switch to LPU
 					</a>
 				</nav>
 			</div>
 		</header>
 
-		<main class="relative z-10 pb-24">
-			<section id="hero" class="relative overflow-hidden pt-24 pb-32">
-				<div class="mx-auto grid max-w-7xl items-center gap-20 px-6 lg:grid-cols-[1.1fr,0.9fr]">
-					<div class="space-y-12 animate-fade-in">
-						<div class="flex flex-wrap items-center gap-3">
-							<span class="inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-500/10 px-4 py-2 text-xs font-semibold tracking-wide text-brand-200">
-								<span class="material-symbols-rounded text-base">rocket_launch</span>
-								Admissions 2025 Live
-							</span>
-							<span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold tracking-wide text-slate-300">
-								<span class="material-symbols-rounded text-base">workspace_premium</span>
-								UG &amp; PG Programmes
-							</span>
-						</div>
-						<div class="space-y-8">
-							<div class="flex items-center gap-2 text-sm font-medium text-slate-400">
-								<span class="material-symbols-rounded text-lg">location_on</span>
-								<span>Noida · Global Innovation Hub</span>
+		<main>
+			<!-- Hero Section -->
+			<section id="hero" class="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+				<div class="mx-auto max-w-4xl text-center">
+				<div class="inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-400/5 px-5 py-2.5 text-sm font-medium text-brand-300 mb-10">
+					<span class="material-symbols-rounded text-base">rocket_launch</span>
+					Admissions 2025 Open
+				</div>
+					<h1 class="text-6xl font-medium leading-[1.1] text-white sm:text-7xl lg:text-8xl mb-8 tracking-tight">
+						Amity University
+					</h1>
+				<p class="text-xl leading-relaxed text-slate-300 mb-12 max-w-3xl mx-auto font-normal">
+					NAAC A+ accredited private university with <span class="text-brand-300 font-medium">400+ programmes</span>, global exchange pathways, and innovation-first campus spanning <span class="text-brand-300 font-medium">28 international locations</span>.
+				</p>
+					<div class="flex flex-wrap items-center justify-center gap-3 mb-16">
+						<a href="#apply"
+							class="btn-ai-primary inline-flex items-center gap-2.5 rounded-full bg-brand-500 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-500/40 hover:scale-[1.03]">
+							<span class="material-symbols-rounded text-lg">assignment_add</span>
+							Apply Now
+						</a>
+						<button id="download-brochure" type="button"
+							class="card-ai inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-brand-400/30 hover:scale-[1.03]">
+							<span class="material-symbols-rounded text-lg">download</span>
+							Download Brochure
+						</button>
+						<button id="open-fee-modal" type="button"
+							class="card-ai inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-brand-400/30 hover:scale-[1.03]">
+							<span class="material-symbols-rounded text-lg">receipt_long</span>
+							View Fee Structure
+						</button>
+					</div>
+					<div class="flex flex-wrap items-center justify-center gap-6 pt-10 border-t border-white/5">
+					<div class="flex items-center gap-3 rounded-xl border border-white/5 bg-slate-900/40 px-6 py-4 backdrop-blur-sm">
+						<span class="material-symbols-rounded text-2xl text-brand-400">verified</span>
+						<div class="text-left">
+							<p class="text-sm text-slate-500 font-normal">Accreditation</p>
+							<p class="text-base text-white font-medium">NAAC A+</p>
 							</div>
-							<h1 class="text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-								Shape an <span class="block mt-2 bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">extraordinary future</span> with Amity University
-							</h1>
-							<p class="max-w-2xl text-xl leading-relaxed text-slate-300 font-light">
-								Join India's <span class="font-semibold text-brand-200">NAAC A+</span> private university with <span class="font-semibold text-white">400+ programmes</span>, global exchange pathways, and an innovation-first campus spanning <span class="font-semibold text-accent-300">28 international locations</span>.
-							</p>
 						</div>
-						<ul class="grid gap-5 text-base text-slate-200 sm:grid-cols-2">
-							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
-								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">monitoring</span>
-								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Industry 5.0</span> aligned curriculum with 300+ experiential modules</span>
-							</li>
-							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
-								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">travel_explore</span>
-								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Global immersion</span> across 28 campuses and 500+ partner universities</span>
-							</li>
-							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
-								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">auto_awesome</span>
-								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Innovation incubators</span>, startup studios, and VC mentorship access</span>
-							</li>
-							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
-								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">diversity_3</span>
-								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">250K+ alumni</span> network with leadership communities in 32 countries</span>
-							</li>
-						</ul>
-						<div class="flex flex-wrap items-center gap-4 pt-4">
-							<a href="#apply"
-								class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-brand-600 hover:shadow-lg">
-								<span class="material-symbols-rounded text-xl leading-none">assignment_add</span>
-								<span>Enquire Now</span>
-							</a>
-							<button id="download-brochure" type="button"
-								class="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30">
-								<span class="material-symbols-rounded text-xl leading-none">download</span>
-								<span>Download Brochure</span>
+					<div class="flex items-center gap-3 rounded-xl border border-white/5 bg-slate-900/40 px-6 py-4 backdrop-blur-sm">
+						<span class="material-symbols-rounded text-2xl text-brand-400">location_on</span>
+						<div class="text-left">
+							<p class="text-sm text-slate-500 font-normal">Location</p>
+							<p class="text-base text-white font-medium">Noida</p>
+							</div>
+						</div>
+					<div class="flex items-center gap-3 rounded-xl border border-white/5 bg-slate-900/40 px-6 py-4 backdrop-blur-sm">
+						<span class="material-symbols-rounded text-2xl text-brand-400">groups</span>
+						<div class="text-left">
+							<p class="text-sm text-slate-500 font-normal">Alumni</p>
+							<p class="text-base text-white font-medium">250K+</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Courses Section -->
+			<section id="courses" class="mx-auto max-w-7xl px-6 py-24">
+				<div class="space-y-12">
+				<div class="text-center max-w-2xl mx-auto">
+					<h2 class="text-4xl font-medium text-white mb-4 tracking-tight sm:text-5xl">Popular Courses</h2>
+					<p class="text-lg text-slate-400 font-normal">Choose from a wide range of programmes</p>
+				</div>
+					<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">computer</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">B.Tech</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Computer Science, AI, Aerospace, Civil</p>
+						</div>
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">business_center</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">MBA</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Marketing, Finance, HR, International Business</p>
+						</div>
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">trending_up</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">BBA & Integrated MBA</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Business Administration programmes</p>
+						</div>
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">palette</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">B.Design</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Communication, Fashion, Product Design</p>
+						</div>
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">menu_book</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">BA</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Journalism, Mass Communication, Psychology</p>
+						</div>
+					<div class="card-ai rounded-xl border border-white/5 bg-slate-900/40 p-7 backdrop-blur-sm transition-all duration-500">
+						<div class="mb-4 inline-flex items-center justify-center rounded-lg bg-brand-500/10 p-3">
+							<span class="icon-ai material-symbols-rounded text-2xl text-brand-400">science</span>
+						</div>
+						<h3 class="text-lg font-medium text-white mb-2">M.Tech & Research</h3>
+						<p class="text-base text-slate-400 font-normal leading-relaxed">Biotechnology, Nanotechnology</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Placements Section -->
+			<section id="placements" class="mx-auto max-w-7xl px-6 py-24">
+				<div class="rounded-2xl border border-white/5 bg-gradient-to-br from-slate-900/60 to-slate-900/40 p-10 backdrop-blur-sm">
+				<div class="text-center mb-12 max-w-2xl mx-auto">
+					<h2 class="text-4xl font-medium text-white mb-4 tracking-tight sm:text-5xl">Placements</h2>
+					<p class="text-lg text-slate-400 font-normal">Outstanding career opportunities</p>
+				</div>
+					<div class="grid gap-5 sm:grid-cols-3">
+					<div class="stat-card-ai card-ai rounded-xl border border-white/5 bg-slate-900/50 p-9 text-center backdrop-blur-sm transition-all duration-500">
+						<div class="mb-6 inline-flex items-center justify-center rounded-full bg-brand-500/10 p-4">
+							<span class="icon-ai material-symbols-rounded text-3xl text-brand-400">workspace_premium</span>
+						</div>
+						<p class="text-4xl font-medium text-brand-400 mb-3 tracking-tight">₹ 61.75 LPA</p>
+						<p class="text-sm text-slate-400 font-normal uppercase tracking-wider">Highest Package</p>
+						</div>
+					<div class="stat-card-ai card-ai rounded-xl border border-white/5 bg-slate-900/50 p-9 text-center backdrop-blur-sm transition-all duration-500">
+						<div class="mb-6 inline-flex items-center justify-center rounded-full bg-brand-500/10 p-4">
+							<span class="icon-ai material-symbols-rounded text-3xl text-brand-400">payments</span>
+						</div>
+						<p class="text-4xl font-medium text-brand-400 mb-3 tracking-tight">₹ 7.8 LPA</p>
+						<p class="text-sm text-slate-400 font-normal uppercase tracking-wider">Average Package</p>
+						</div>
+					<div class="stat-card-ai card-ai rounded-xl border border-white/5 bg-slate-900/50 p-9 text-center backdrop-blur-sm transition-all duration-500">
+						<div class="mb-6 inline-flex items-center justify-center rounded-full bg-brand-500/10 p-4">
+							<span class="icon-ai material-symbols-rounded text-3xl text-brand-400">groups</span>
+						</div>
+						<p class="text-4xl font-medium text-brand-400 mb-3 tracking-tight">600+</p>
+						<p class="text-sm text-slate-400 font-normal uppercase tracking-wider">Recruiters</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Apply Section -->
+			<section id="apply" class="mx-auto max-w-5xl px-6 py-24">
+				<div class="rounded-2xl border border-white/5 bg-gradient-to-br from-slate-900/60 to-slate-900/40 p-10 backdrop-blur-sm">
+				<div class="text-center mb-10 max-w-xl mx-auto">
+					<h2 class="text-4xl font-medium text-white mb-4 tracking-tight sm:text-5xl">Apply Now</h2>
+					<p class="text-lg text-slate-400 font-normal">Fill in your details and we'll get back to you</p>
+				</div>
+				<form id="lead-form" class="mt-10 grid gap-6 sm:grid-cols-2" novalidate>
+					<label class="text-base font-medium text-slate-300">
+						Full Name
+						<input type="text" name="fullName" required placeholder="Enter your name"
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white placeholder:text-slate-500 focus:outline-none transition-all duration-300">
+						</label>
+					<label class="text-base font-medium text-slate-300">
+						Email
+						<input type="email" name="email" required placeholder="Enter your email"
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white placeholder:text-slate-500 focus:outline-none transition-all duration-300">
+						</label>
+					<label class="text-base font-medium text-slate-300">
+						Phone
+						<input type="tel" name="phone" pattern="^\+?[0-9 ]{10,17}$" inputmode="tel"
+							maxlength="17" required placeholder="+91 9876543210"
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white placeholder:text-slate-500 focus:outline-none transition-all duration-300">
+						</label>
+					<label class="text-base font-medium text-slate-300">
+						State
+						<select name="state" required
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white focus:outline-none transition-all duration-300">
+								<option value="">Select state</option>
+							</select>
+						</label>
+					<label class="text-base font-medium text-slate-300">
+						Course Interested
+						<select name="course" required
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white focus:outline-none transition-all duration-300">
+								<option value="">Select course</option>
+							</select>
+						</label>
+					<label class="text-base font-medium text-slate-300">
+						Intake Year
+						<select name="intake" required
+							class="input-ai mt-2.5 w-full rounded-lg border border-white/10 bg-slate-900/50 px-4 py-3.5 text-base text-white focus:outline-none transition-all duration-300">
+								<option value="2025">2025</option>
+								<option value="2026">2026</option>
+								<option value="2027">2027</option>
+							</select>
+						</label>
+					<label class="col-span-full flex items-start gap-3 rounded-lg bg-slate-900/40 p-5 text-base text-slate-300 border border-white/5">
+						<input type="checkbox" name="consent" required
+							class="mt-0.5 h-5 w-5 flex-shrink-0 rounded border-white/20 bg-slate-900/50 focus:ring-brand-400 focus:ring-2 transition-all duration-200">
+						<span class="font-normal">I agree to be contacted regarding my enquiry and confirm the information is accurate.</span>
+						</label>
+						<div class="col-span-full flex items-center justify-between pt-2">
+							<button type="submit"
+								class="btn-ai-primary inline-flex items-center gap-2.5 rounded-lg bg-brand-500 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-500/40 hover:scale-[1.03]">
+								<span class="material-symbols-rounded text-lg">send</span>
+								Submit Application
 							</button>
-							<button id="open-fee-modal" type="button"
-								class="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30">
-								<span class="material-symbols-rounded text-xl leading-none">receipt_long</span>
-								<span>View Fee Structure</span>
-							</button>
+							<p id="form-status" class="text-sm text-slate-400 font-normal" role="status" aria-live="polite"></p>
 						</div>
-						<div class="flex flex-wrap items-center gap-6 pt-6 border-t border-white/5">
-							<span class="flex items-center gap-2 text-sm text-slate-400">
-								<span class="material-symbols-rounded text-base">verified</span>
-								<span>NAAC A+ Accredited</span>
-							</span>
-							<span class="flex items-center gap-2 text-sm text-slate-400">
-								<span class="material-symbols-rounded text-base">workspace_premium</span>
-								<span>Times Higher Education Ranked</span>
-							</span>
-							<span class="flex items-center gap-2 text-sm text-slate-400">
-								<span class="material-symbols-rounded text-base">science</span>
-								<span>400+ Smart Labs</span>
-							</span>
-						</div>
-					</div>
-					<div class="relative">
-							<div class="relative rounded-2xl p-4 shadow-xl bg-slate-900/60 border border-white/10 backdrop-blur-sm">
-								<div class="overflow-hidden rounded-xl border border-white/10">
-									<img src="./assets/campus-hero.jpg" alt="Amity University campus aerial view"
-										class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
-								</div>
-							<div class="absolute -bottom-8 left-1/2 w-[90%] -translate-x-1/2">
-								<div class="group relative rounded-2xl px-6 py-5 text-sm text-slate-100 shadow-lg bg-slate-900/80 border border-white/10 backdrop-blur-md transition-all duration-200 hover:border-brand-400/30">
-									<div class="flex items-center justify-between gap-4">
-										<div>
-											<p class="text-xs uppercase tracking-wide text-slate-400">Explore</p>
-											<p class="mt-1 text-base font-semibold text-white">Virtual campus walk-through</p>
-										</div>
-										<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
-											<span class="material-symbols-rounded text-xl leading-none">play_circle</span>
-										</span>
-									</div>
-									<p class="mt-2 text-xs text-slate-400">Step inside our labs, studios, and collaborative spaces with guided faculty tours.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section id="overview" class="mx-auto max-w-7xl px-6 pb-24">
-				<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-					<div class="flex items-center gap-3 mb-6">
-						<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
-						<h2 class="text-4xl font-bold text-white">Overview</h2>
-					</div>
-					<div class="space-y-5 text-lg leading-relaxed text-slate-300">
-						<p>
-							Amity University is one of India's largest private education groups with <span class="font-semibold text-white">11 universities</span>, <span class="font-semibold text-white">25 schools</span>, <span class="font-semibold text-brand-200">28 global campuses</span>, and over <span class="font-semibold text-accent-300">250,000 alumni</span>. More than <span class="font-semibold text-white">6,000 faculty members</span> blend academic expertise with industry exposure, delivering learning through <span class="font-semibold text-brand-200">400+ state-of-the-art labs</span>, digital studios, and entrepreneurship zones. Students benefit from international exchange programmes, industry-funded research, and a curriculum co-designed with global partners.
-						</p>
-						<p>
-							The university's innovation ecosystem is anchored by the <span class="font-semibold text-brand-200">Amity Innovation Incubator</span>, which has supported <span class="font-semibold text-white">300+ start-ups</span>, including several funded ventures. Scholarships worth <span class="font-semibold text-accent-300">₹300 crores</span> are awarded annually to meritorious and deserving students, making quality education accessible.
-						</p>
-					</div>
-				</article>
-			</section>
-
-			<section id="courses" class="mx-auto max-w-7xl px-6 pb-28">
-				<div class="grid gap-12 lg:grid-cols-[1.2fr,0.8fr]">
-					<div class="space-y-10">
-						<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-							<div class="flex items-center gap-3 mb-6">
-								<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
-								<h3 class="text-3xl font-bold text-white">Popular Courses</h3>
-							</div>
-							<ul class="grid gap-4 text-base text-slate-200 md:grid-cols-2">
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">B.Tech</span> (Computer Science, AI, Aerospace, Civil)
-								</li>
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">MBA</span> (Marketing, Finance, HR, International Business)
-								</li>
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">BBA &amp; Integrated MBA</span>
-								</li>
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">B.Design</span> (Communication, Fashion, Product)
-								</li>
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">BA</span> (Journalism &amp; Mass Communication, Psychology)
-								</li>
-								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="font-semibold text-white">M.Tech &amp; Research</span> (Biotechnology, Nanotechnology)
-								</li>
-							</ul>
-						</article>
-						<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-							<div class="flex items-center gap-3 mb-6">
-								<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
-								<h3 class="text-3xl font-bold text-white">Academic Highlights</h3>
-							</div>
-							<ul class="grid gap-4 text-base text-slate-200 md:grid-cols-2">
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">science</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Industry-aligned curriculum</span> with 300+ experiential learning modules</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">public</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">International dual-degree</span> and semester abroad options across the USA, UK, Australia &amp; Singapore</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span
-										class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">workspace_premium</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Amity Innovation Incubator</span> with access to seed funding, mentorship, and investor connects</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">verified</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Mandatory internships</span>, certification tracks, and global language proficiency programmes</span>
-								</li>
-							</ul>
-						</article>
-					</div>
-					<aside class="space-y-6">
-						<div class="rounded-2xl p-8 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-							<div class="flex items-center gap-3 mb-6">
-								<div class="h-0.5 w-10 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
-								<h3 class="flex items-center gap-2 text-2xl font-bold text-white">
-								<span class="material-symbols-rounded text-xl">camping</span>
-									<span>Campus Life &amp; Facilities</span>
-							</h3>
-							</div>
-							<ul class="space-y-4 text-base text-slate-200">
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span
-										class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">stadia_controller</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Olympic-sized sports complex</span>, climbing wall, and e-sports arena</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">biotech</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Advanced research labs</span> in AI, space science, biotechnology, and forensics</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">maps_home_work</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Smart hostels</span> with biometric access, co-working lounges, and wellness centres</span>
-								</li>
-								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">diversity_3</span>
-									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">100+ student clubs</span>, international cultural festivals, and leadership conclaves</span>
-								</li>
-							</ul>
-						</div>
-						<div
-							class="rounded-2xl border border-brand-400/30 bg-brand-500/10 p-6 text-sm text-brand-100 shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-brand-400/40">
-							<div class="flex items-center gap-2 text-brand-200">
-								<span class="material-symbols-rounded text-lg">tips_and_updates</span>
-								<p class="text-base font-semibold">Scholarship advisory</p>
-							</div>
-							<p class="mt-3 leading-relaxed text-brand-50/90">
-								Discover merit, sports, defence, and need-based scholarships. Our counsellors will help
-								you secure the right financial aid combination.
-							</p>
-							<a href="#apply"
-								class="mt-3 inline-flex items-center justify-center gap-1 text-sm font-semibold text-brand-200 transition-all hover:text-brand-100">
-								<span>Talk to an advisor</span>
-								<span class="material-symbols-rounded text-base leading-none">arrow_right_alt</span>
-							</a>
-						</div>
-					</aside>
-				</div>
-			</section>
-
-			<section id="placements" class="mx-auto max-w-7xl px-6 pb-28">
-				<div class="rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-					<div class="flex items-center gap-3 mb-8">
-						<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
-						<h2 class="flex items-center gap-3 text-4xl font-bold text-white">
-							<span class="material-symbols-rounded text-3xl">trending_up</span>
-						Placements Snapshot
-					</h2>
-					</div>
-					<div class="grid gap-6 text-center md:grid-cols-3">
-						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-							<span class="material-symbols-rounded text-4xl text-brand-300">workspace_premium</span>
-							<p class="mt-4 text-3xl font-bold text-white">₹ 61.75 LPA</p>
-							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Highest Package</p>
-						</div>
-						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-							<span class="material-symbols-rounded text-4xl text-brand-300">payments</span>
-							<p class="mt-4 text-3xl font-bold text-white">₹ 7.8 LPA</p>
-							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Average Package (Top 25%)</p>
-						</div>
-						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
-							<span class="material-symbols-rounded text-4xl text-brand-300">diversity_3</span>
-							<p class="mt-4 text-3xl font-bold text-white">600+</p>
-							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Recruiters</p>
-						</div>
-					</div>
-					<div class="mt-8 pt-6 border-t border-white/5">
-						<p class="text-base text-slate-300 leading-relaxed">
-							<span class="font-semibold text-white">Top recruiters include:</span> Amazon, Microsoft, Samsung, Deloitte, EY, Accenture, HCL, TCS, and IBM.
-					</p>
-					</div>
-				</div>
-			</section>
-
-			<section id="apply" class="bg-slate-900/30 py-20">
-				<div class="mx-auto max-w-5xl px-6">
-					<div class="rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
-						<div class="pb-6">
-							<h2 class="text-4xl font-bold text-white">Ready to apply?</h2>
-							<p class="text-base text-slate-400 mt-3">Share your details and the Amity admissions desk will
-								reach out with personalised guidance.</p>
-						</div>
-						<form id="lead-form" class="grid gap-5 md:grid-cols-2" novalidate>
-							<label class="text-sm font-medium text-slate-300">
-								Full Name
-								<input type="text" name="fullName" required placeholder="Priya Sharma"
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
-							</label>
-							<label class="text-sm font-medium text-slate-300">
-								Email
-								<input type="email" name="email" required placeholder="priya@email.com"
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
-							</label>
-							<label class="text-sm font-medium text-slate-300">
-								Phone
-								<input type="tel" name="phone" pattern="^\+?[0-9 ]{10,17}$" inputmode="tel"
-									maxlength="17" required placeholder="+91 9876567890"
-									title="Enter 10–15 digits, optional + and spaces allowed"
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80" />
-
-							</label>
-							<label class="text-sm font-medium text-slate-300">
-								State
-								<select name="state" required
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
-									<option value="">Select</option>
-								</select>
-							</label>
-							<label class="text-sm font-medium text-slate-300">
-								Course Interested
-								<select name="course" required
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
-									<option value="">Select</option>
-								</select>
-							</label>
-							<label class="text-sm font-medium text-slate-300">
-								Intake Year
-								<select name="intake" required
-									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
-									<option value="2025">2025</option>
-									<option value="2026">2026</option>
-									<option value="2027">2027</option>
-								</select>
-							</label>
-							<label
-								class="col-span-full flex items-center gap-3 rounded-xl bg-slate-900/40 px-4 py-4 text-sm text-slate-300 ring-1 ring-white/10">
-								<input type="checkbox" name="consent" required
-									class="h-5 w-5 flex-shrink-0 rounded border-white/20 bg-slate-900 focus:ring-brand-400">
-								<span>I agree to be contacted regarding my enquiry and confirm that the information
-									shared above is accurate.</span>
-							</label>
-							<div
-								class="col-span-full flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-								<button type="submit"
-									class="relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-brand-600 hover:shadow-lg">
-										<span class="material-symbols-rounded text-xl leading-none">send</span>
-										<span>Submit Application</span>
-									</button>
-								<p id="form-status" class="text-sm text-slate-400" role="status" aria-live="polite"></p>
-							</div>
-						</form>
-					</div>
+					</form>
 				</div>
 			</section>
 		</main>
 
-		<footer id="contact" class="border-t border-white/5 bg-slate-950/80 py-8">
-			<div
-				class="mx-auto flex max-w-6xl flex-col gap-4 px-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-				<p>© <span id="year"></span> KollegeApply. Educational content for aspiring students.</p>
-				<div class="flex flex-wrap items-center gap-4 text-slate-400">
-					<a href="mailto:hello@kollegeapply.com"
-						class="inline-flex items-center gap-2 transition-colors hover:text-white">
+		<!-- Footer -->
+		<footer id="contact" class="border-t border-white/5 bg-slate-950/95 py-10 backdrop-blur-xl">
+			<div class="mx-auto flex max-w-7xl flex-col gap-5 px-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+				<p class="font-normal">© <span id="year"></span> KollegeApply. All rights reserved.</p>
+				<div class="flex flex-wrap items-center gap-6">
+					<a href="mailto:hello@kollegeapply.com" class="flex items-center gap-2 font-normal transition-colors duration-200 hover:text-white">
 						<span class="material-symbols-rounded text-base">mail</span>
 						hello@kollegeapply.com
 					</a>
-					<a href="tel:+911234567890" class="inline-flex items-center gap-2 transition-colors hover:text-white">
+					<a href="tel:+911234567890" class="flex items-center gap-2 font-normal transition-colors duration-200 hover:text-white">
 						<span class="material-symbols-rounded text-base">call</span>
 						+91 12345 67890
 					</a>
@@ -447,17 +479,18 @@
 		</footer>
 	</div>
 
+	<!-- Fee Modal -->
 	<div id="fee-modal"
-		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm"
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
 		aria-hidden="true" role="dialog" aria-modal="true">
-		<div class="relative w-full max-w-3xl rounded-2xl p-8 bg-slate-900/90 border border-white/10 backdrop-blur-md shadow-2xl">
+		<div class="relative w-full max-w-2xl rounded-2xl border border-white/10 bg-slate-900/95 p-8 backdrop-blur-xl">
 			<button id="close-fee-modal" type="button"
-				class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white/20 hover:rotate-90"
+				class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white transition-all duration-200 hover:bg-white/10"
 				aria-label="Close modal">
-				<span class="material-symbols-rounded">close</span>
+				<span class="material-symbols-rounded text-lg">close</span>
 			</button>
-			<h4 id="fee-modal-title" class="text-xl font-bold text-white">Fee Structure</h4>
-			<div id="fee-table" class="mt-4 grid gap-3 text-sm text-slate-200"></div>
+			<h4 id="fee-modal-title" class="text-xl font-medium text-white mb-6">Fee Structure</h4>
+			<div id="fee-table" class="grid gap-3 text-sm text-slate-200"></div>
 		</div>
 	</div>
 
