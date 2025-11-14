@@ -31,18 +31,30 @@ function populateSelect(select, items) {
 }
 
 function openModal() {
-	const modal = byId("fee-modal");
-	if (modal) {
-		modal.classList.remove("hidden");
-		modal.setAttribute("aria-hidden", "false");
+	const dropdown = byId("fee-dropdown");
+	if (dropdown) {
+		dropdown.classList.remove("hidden");
+		dropdown.setAttribute("aria-hidden", "false");
+		
+		// Trigger animation
+		setTimeout(() => {
+			const content = byId("fee-content");
+			const backdrop = byId("fee-backdrop");
+			if (content) {
+				content.style.animation = "slideDown 0.3s ease-out";
+			}
+			if (backdrop) {
+				backdrop.style.animation = "fadeIn 0.2s ease-out";
+			}
+		}, 10);
 	}
 }
 
 function closeModal() {
-	const modal = byId("fee-modal");
-	if (modal) {
-		modal.classList.add("hidden");
-		modal.setAttribute("aria-hidden", "true");
+	const dropdown = byId("fee-dropdown");
+	if (dropdown) {
+		dropdown.classList.add("hidden");
+		dropdown.setAttribute("aria-hidden", "true");
 		const table = byId("fee-table");
 		if (table) {
 			table.innerHTML = "";
@@ -52,14 +64,14 @@ function closeModal() {
 
 async function fetchFees() {
 	const table = byId("fee-table");
-	const title = byId("fee-modal-title");
+	const title = byId("fee-dropdown-title");
 	
 	if (title) {
 		title.textContent = "Lovely Professional University · Fee Structure";
 	}
 	
 	if (table) {
-		table.innerHTML = '<div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4 text-slate-200">Loading fee structure...</div>';
+		table.innerHTML = '<div class="rounded-xl border border-white/10 bg-slate-900/70 p-6 text-base text-slate-300">Loading fee structure...</div>';
 	}
 	
 	try {
@@ -76,18 +88,18 @@ async function fetchFees() {
 			const entries = Object.entries(data);
 			
 			if (entries.length === 0) {
-				feeHTML = '<div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4 text-slate-200">Fee information will be shared shortly.</div>';
+				feeHTML = '<div class="rounded-xl border border-white/10 bg-slate-900/70 p-6 text-base text-slate-300">Fee information will be shared shortly.</div>';
 			} else {
 				for (let i = 0; i < entries.length; i++) {
 					const course = entries[i][0];
 					const fee = entries[i][1];
-					feeHTML += '<div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4 text-sm text-slate-200 shadow-lg">';
+					feeHTML += '<div class="card-ai rounded-xl border border-white/5 bg-slate-900/60 p-5 transition-all duration-300 hover:bg-slate-900/80">';
 					feeHTML += '<div class="flex items-center justify-between gap-4">';
-					feeHTML += '<strong class="text-white">' + course + '</strong>';
-					feeHTML += '<span class="inline-flex items-center gap-2 rounded-full bg-brand-500/15 px-3 py-1 text-[0.75rem] font-semibold text-brand-200">';
-					feeHTML += '<span class="material-symbols-rounded text-sm">currency_rupee</span>₹ ' + formatCurrency(fee);
+					feeHTML += '<strong class="text-base text-white font-medium">' + course + '</strong>';
+					feeHTML += '<span class="inline-flex items-center gap-1.5 rounded-full bg-brand-500/20 px-4 py-1.5 text-sm font-semibold text-brand-300">';
+					feeHTML += '<span class="material-symbols-rounded text-base">currency_rupee</span>₹ ' + formatCurrency(fee);
 					feeHTML += '</span></div>';
-					feeHTML += '<p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-500">Annual tuition</p>';
+					feeHTML += '<p class="mt-2 text-xs uppercase tracking-wider text-slate-500">Annual tuition</p>';
 					feeHTML += '</div>';
 				}
 			}
@@ -97,7 +109,7 @@ async function fetchFees() {
 	} catch (error) {
 		console.error("Fee fetch failed:", error);
 		if (table) {
-			table.innerHTML = '<div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4 text-slate-200">Unable to load fee details right now. Please try again later.</div>';
+			table.innerHTML = '<div class="rounded-xl border border-white/10 bg-slate-900/70 p-6 text-base text-slate-300">Unable to load fee details right now. Please try again later.</div>';
 		}
 	}
 	
@@ -236,7 +248,7 @@ function init() {
 		openFeeButton.addEventListener("click", fetchFees);
 	}
 	
-	const closeFeeButton = byId("close-fee-modal");
+	const closeFeeButton = byId("close-fee-dropdown");
 	if (closeFeeButton) {
 		closeFeeButton.addEventListener("click", closeModal);
 	}
@@ -251,13 +263,10 @@ function init() {
 		leadForm.addEventListener("submit", submitLead);
 	}
 	
-	const feeModal = byId("fee-modal");
-	if (feeModal) {
-		feeModal.addEventListener("click", function(event) {
-			if (event.target.id === "fee-modal") {
-				closeModal();
-			}
-		});
+	const feeDropdown = byId("fee-dropdown");
+	const feeBackdrop = byId("fee-backdrop");
+	if (feeBackdrop) {
+		feeBackdrop.addEventListener("click", closeModal);
 	}
 	
 	document.addEventListener("keydown", function(event) {

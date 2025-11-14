@@ -189,6 +189,37 @@
 		.nav-link-ai:hover::after {
                         width: 100%;
                 }
+
+		/* Dropdown Animations */
+		@keyframes slideDown {
+			from {
+				opacity: 0;
+				transform: translateX(-50%) translateY(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(-50%) translateY(0);
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		/* Hide scrollbar */
+		.hide-scrollbar {
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+		}
+
+		.hide-scrollbar::-webkit-scrollbar {
+			display: none;
+		}
         </style>
 	<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
         <script>
@@ -457,22 +488,35 @@
                 </footer>
         </div>
 
-	<!-- Fee Modal -->
-	<div id="fee-modal"
-		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
-		aria-hidden="true" role="dialog" aria-modal="true">
-		<div class="relative w-full max-w-2xl rounded-2xl border border-white/10 bg-slate-900/95 p-8 backdrop-blur-xl">
-			<button id="close-fee-modal" type="button"
-				class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white transition-all duration-200 hover:bg-white/10"
-				aria-label="Close modal">
-				<span class="material-symbols-rounded text-lg">close</span>
-			</button>
-			<h4 id="fee-modal-title" class="text-xl font-medium text-white mb-6">Fee Structure</h4>
-			<div id="fee-table" class="grid gap-3 text-sm text-slate-200"></div>
-                </div>
-        </div>
+	<!-- Fee Dropdown -->
+	<div id="fee-dropdown"
+		class="fixed inset-0 z-50 hidden"
+		aria-hidden="true">
+		<!-- Backdrop -->
+		<div id="fee-backdrop" class="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" aria-hidden="true"></div>
+		
+		<!-- Dropdown Content -->
+		<div id="fee-content" class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 py-24">
+			<div class="relative rounded-2xl border border-white/10 bg-slate-900/95 backdrop-blur-xl shadow-2xl">
+				<!-- Header -->
+				<div class="flex items-center justify-between border-b border-white/5 px-6 py-4">
+					<h4 id="fee-dropdown-title" class="text-xl font-medium text-white">Fee Structure</h4>
+					<button id="close-fee-dropdown" type="button"
+						class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white transition-all duration-200 hover:bg-white/10"
+						aria-label="Close">
+						<span class="material-symbols-rounded text-lg">close</span>
+					</button>
+				</div>
+				
+				<!-- Content -->
+				<div class="max-h-[60vh] overflow-y-auto p-6 hide-scrollbar">
+					<div id="fee-table" class="grid gap-4"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        <script src="./script.js"></script>
+	<script src="./script.js"></script>
 </body>
 
 </html>
