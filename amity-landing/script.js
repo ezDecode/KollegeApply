@@ -128,24 +128,6 @@ async function loadConfig() {
 	}
 }
 
-function toggleAccessibility() {
-	const info = byId("accessibility-info");
-	const status = byId("accessibility-status");
-	
-	if (!info) {
-		return;
-	}
-	
-	const isHidden = info.classList.toggle("hidden");
-	
-	if (status) {
-		if (isHidden) {
-			status.textContent = "Show";
-		} else {
-			status.textContent = "Hide";
-		}
-	}
-}
 
 function getUserFriendlyError(error) {
 	const message = error.message || "";
@@ -264,11 +246,6 @@ function init() {
 	const downloadButton = byId("download-brochure");
 	if (downloadButton) {
 		downloadButton.addEventListener("click", downloadBrochure);
-	}
-	
-	const toggleButton = byId("toggle-accessibility");
-	if (toggleButton) {
-		toggleButton.addEventListener("click", toggleAccessibility);
 	}
 	
 	const leadForm = byId("lead-form");

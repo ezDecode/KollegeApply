@@ -19,12 +19,22 @@
 		@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 
 		:root {
-			font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			color-scheme: dark;
 		}
 
-		body {
-			font-family: inherit;
+		@keyframes float-slow {
+			0%, 100% { transform: translate3d(0, 0, 0); }
+			50% { transform: translate3d(12px, -18px, 0); }
+		}
+
+		@keyframes fade-in {
+			from { opacity: 0; transform: translateY(18px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@keyframes slide-up {
+			from { opacity: 0; transform: translateY(30px); }
+			to { opacity: 1; transform: translateY(0); }
 		}
 
 		.material-symbols-rounded {
@@ -38,34 +48,19 @@
 				extend: {
 					colors: {
 						brand: {
-							50: "#eef4ff",
-							100: "#d8e4ff",
-							200: "#b1c8ff",
-							300: "#88aaff",
-							400: "#5f8bff",
-							500: "#3570ff",
-							600: "#1f58e6",
-							700: "#1744b3",
-							800: "#113083",
-							900: "#0c2260"
+							50: "#eef4ff", 100: "#d8e4ff", 200: "#b1c8ff", 300: "#88aaff",
+							400: "#5f8bff", 500: "#3570ff", 600: "#1f58e6", 700: "#1744b3",
+							800: "#113083", 900: "#0c2260"
 						},
 						accent: {
-							100: "#ffe8c7",
-							400: "#f9a826",
-							500: "#f3960c",
-							600: "#cc7a07"
+							100: "#ffe8c7", 400: "#f9a826", 500: "#f3960c", 600: "#cc7a07"
 						},
 						surface: {
-							50: "#0d1220",
-							100: "#101529",
-							200: "#151c34"
+							50: "#0d1220", 100: "#101529", 200: "#151c34"
 						}
 					},
 					fontFamily: {
 						sans: ['"Inter Tight"', "ui-sans-serif", "system-ui"]
-					},
-					boxShadow: {
-						glow: "0 18px 50px -15px rgba(53, 112, 255, 0.45)"
 					}
 				}
 			}
@@ -73,36 +68,31 @@
 	</script>
 </head>
 
-<body class="bg-slate-950 text-slate-100 antialiased">
+<body class="bg-slate-950 text-slate-100 antialiased font-sans relative">
 	<div class="relative min-h-screen overflow-hidden">
-		<div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(53,112,255,0.18),transparent_55%),radial-gradient(circle_at_80%_10%,rgba(249,168,38,0.16),transparent_45%),radial-gradient(circle_at_55%_75%,rgba(15,118,110,0.18),transparent_55%)]"
+		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(53,112,255,0.08),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(249,168,38,0.06),transparent_50%)] opacity-90"
 			aria-hidden="true"></div>
 
-		<header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/85 backdrop-blur">
-			<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-				<a href="#hero" class="flex items-center gap-3 text-white no-underline">
-					<span class="material-symbols-rounded text-3xl text-brand-300">school</span>
-					<span class="text-lg font-semibold tracking-tight sm:text-xl">KollegeApply</span>
+		<header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/90 backdrop-blur-md shadow-sm shadow-black/10">
+			<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+				<a href="#hero" class="group relative flex items-center gap-3 text-white no-underline transition-all duration-200">
+					<span class="material-symbols-rounded text-3xl text-brand-400 transition-colors duration-200 group-hover:text-brand-300">school</span>
+					<span class="text-xl font-bold tracking-tight sm:text-2xl text-white">
+						KollegeApply
+					</span>
 				</a>
-				<nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 sm:flex">
-					<a href="#overview" class="transition hover:text-white/90 focus-visible:text-white/90">Overview</a>
-					<a href="#courses" class="transition hover:text-white/90 focus-visible:text-white/90">Courses</a>
-					<a href="#placements"
-						class="transition hover:text-white/90 focus-visible:text-white/90">Placements</a>
-					<a href="#apply" class="transition hover:text-white/90 focus-visible:text-white/90">Apply</a>
-					<button id="toggle-accessibility" type="button" 
-						class="inline-flex items-center justify-center gap-2 rounded-full bg-slate-800/80 px-4 py-2 text-slate-300 transition hover:bg-slate-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
-						aria-label="Toggle accessibility view">
-						<span class="material-symbols-rounded text-lg leading-none">accessibility</span>
-						<span id="accessibility-status" class="text-xs font-semibold">Show</span>
-					</button>
+				<nav class="hidden items-center gap-8 text-sm font-medium text-slate-400 sm:flex">
+					<a href="#overview" class="relative transition-colors duration-200 hover:text-white">Overview</a>
+					<a href="#courses" class="relative transition-colors duration-200 hover:text-white">Courses</a>
+					<a href="#placements" class="relative transition-colors duration-200 hover:text-white">Placements</a>
+					<a href="#apply" class="relative transition-colors duration-200 hover:text-white">Apply</a>
 					<a id="switch-university" href="https://lpu-landing.netlify.app"
-						class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500/20 border border-orange-400/40 px-4 py-2 text-orange-200 transition hover:bg-orange-500/30 hover:border-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300">
-						<span class="material-symbols-rounded text-lg leading-none">swap_horiz</span>
-						<span class="text-sm font-semibold">Switch to LPU</span>
+						class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-orange-500/15 border border-orange-400/30 px-5 py-2.5 text-orange-300 transition-all duration-200 hover:bg-orange-500/25 hover:text-orange-200">
+						<span class="material-symbols-rounded text-lg leading-none transition-transform duration-200 group-hover:rotate-90">swap_horiz</span>
+						<span class="text-sm font-medium">Switch to LPU</span>
 					</a>
 					<a href="#contact"
-						class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-4 py-2 text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+						class="relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-white font-medium shadow-sm transition-all duration-200 hover:bg-brand-600">
 						<span class="material-symbols-rounded text-lg leading-none">headset_mic</span>
 						<span>Talk to us</span>
 					</a>
@@ -111,308 +101,313 @@
 		</header>
 
 		<main class="relative z-10 pb-24">
-			<section id="hero" class="bg-gradient-to-b from-brand-500/10 via-transparent to-transparent pt-16 pb-24">
-				<div class="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1.15fr,0.85fr]">
-					<div class="space-y-6">
-						<span
-							class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">Featured
-							University</span>
-						<div class="space-y-4">
-							<p class="flex items-center gap-2 text-sm font-medium text-slate-300">
-								<span class="material-symbols-rounded text-base text-brand-300">location_on</span>
-								<span>Noida, Uttar Pradesh</span>
-							</p>
-							<h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Amity University</h1>
-							<p class="max-w-xl text-lg text-slate-300">
-								Pursue future-ready programmes, learn from global faculty, and gain industry exposure at
-								India’s leading NAAC A+ private university.
-							</p>
-						</div>
-						<div class="flex flex-wrap gap-3 text-xs">
-							<span
-								class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-300/40">
-								<span class="material-symbols-rounded text-base">verified</span>
-								NAAC A+ Accredited
+			<section id="hero" class="relative overflow-hidden pt-24 pb-32">
+				<div class="mx-auto grid max-w-7xl items-center gap-20 px-6 lg:grid-cols-[1.1fr,0.9fr]">
+					<div class="space-y-12 animate-fade-in">
+						<div class="flex flex-wrap items-center gap-3">
+							<span class="inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-500/10 px-4 py-2 text-xs font-semibold tracking-wide text-brand-200">
+								<span class="material-symbols-rounded text-base">rocket_launch</span>
+								Admissions 2025 Live
 							</span>
-							<span
-								class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-300/40">
-								<span class="material-symbols-rounded text-base">public</span>
-								28 Global Campuses
-							</span>
-							<span
-								class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.25em] text-brand-100 ring-1 ring-brand-300/40">
-								<span class="material-symbols-rounded text-base">diversity_3</span>
-								250,000+ Alumni
+							<span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold tracking-wide text-slate-300">
+								<span class="material-symbols-rounded text-base">workspace_premium</span>
+								UG &amp; PG Programmes
 							</span>
 						</div>
-						<div class="flex flex-wrap gap-3">
+						<div class="space-y-8">
+							<div class="flex items-center gap-2 text-sm font-medium text-slate-400">
+								<span class="material-symbols-rounded text-lg">location_on</span>
+								<span>Noida · Global Innovation Hub</span>
+							</div>
+							<h1 class="text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+								Shape an <span class="block mt-2 bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">extraordinary future</span> with Amity University
+							</h1>
+							<p class="max-w-2xl text-xl leading-relaxed text-slate-300 font-light">
+								Join India's <span class="font-semibold text-brand-200">NAAC A+</span> private university with <span class="font-semibold text-white">400+ programmes</span>, global exchange pathways, and an innovation-first campus spanning <span class="font-semibold text-accent-300">28 international locations</span>.
+							</p>
+						</div>
+						<ul class="grid gap-5 text-base text-slate-200 sm:grid-cols-2">
+							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
+								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">monitoring</span>
+								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Industry 5.0</span> aligned curriculum with 300+ experiential modules</span>
+							</li>
+							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
+								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">travel_explore</span>
+								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Global immersion</span> across 28 campuses and 500+ partner universities</span>
+							</li>
+							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
+								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">auto_awesome</span>
+								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Innovation incubators</span>, startup studios, and VC mentorship access</span>
+							</li>
+							<li class="group relative flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 transition-all duration-200 hover:border-brand-400/30 hover:bg-brand-500/5">
+								<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">diversity_3</span>
+								<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">250K+ alumni</span> network with leadership communities in 32 countries</span>
+							</li>
+						</ul>
+						<div class="flex flex-wrap items-center gap-4 pt-4">
 							<a href="#apply"
-								class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
+								class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-brand-600 hover:shadow-lg">
 								<span class="material-symbols-rounded text-xl leading-none">assignment_add</span>
 								<span>Enquire Now</span>
 							</a>
 							<button id="download-brochure" type="button"
-								class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-300 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+								class="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30">
 								<span class="material-symbols-rounded text-xl leading-none">download</span>
 								<span>Download Brochure</span>
 							</button>
 							<button id="open-fee-modal" type="button"
-								class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-300 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
+								class="group relative inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-base font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30">
 								<span class="material-symbols-rounded text-xl leading-none">receipt_long</span>
 								<span>View Fee Structure</span>
 							</button>
 						</div>
+						<div class="flex flex-wrap items-center gap-6 pt-6 border-t border-white/5">
+							<span class="flex items-center gap-2 text-sm text-slate-400">
+								<span class="material-symbols-rounded text-base">verified</span>
+								<span>NAAC A+ Accredited</span>
+							</span>
+							<span class="flex items-center gap-2 text-sm text-slate-400">
+								<span class="material-symbols-rounded text-base">workspace_premium</span>
+								<span>Times Higher Education Ranked</span>
+							</span>
+							<span class="flex items-center gap-2 text-sm text-slate-400">
+								<span class="material-symbols-rounded text-base">science</span>
+								<span>400+ Smart Labs</span>
+							</span>
+						</div>
 					</div>
-					<div class="rounded-3xl border border-white/10 bg-slate-900/60 p-4 shadow-2xl ring-1 ring-white/10">
-						<img src="./assets/campus-hero.svg" alt="Amity University campus"
-							class="h-full w-full rounded-2xl object-cover shadow-xl">
+					<div class="relative">
+							<div class="relative rounded-2xl p-4 shadow-xl bg-slate-900/60 border border-white/10 backdrop-blur-sm">
+								<div class="overflow-hidden rounded-xl border border-white/10">
+									<img src="./assets/campus-hero.jpg" alt="Amity University campus aerial view"
+										class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+								</div>
+							<div class="absolute -bottom-8 left-1/2 w-[90%] -translate-x-1/2">
+								<div class="group relative rounded-2xl px-6 py-5 text-sm text-slate-100 shadow-lg bg-slate-900/80 border border-white/10 backdrop-blur-md transition-all duration-200 hover:border-brand-400/30">
+									<div class="flex items-center justify-between gap-4">
+										<div>
+											<p class="text-xs uppercase tracking-wide text-slate-400">Explore</p>
+											<p class="mt-1 text-base font-semibold text-white">Virtual campus walk-through</p>
+										</div>
+										<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
+											<span class="material-symbols-rounded text-xl leading-none">play_circle</span>
+										</span>
+									</div>
+									<p class="mt-2 text-xs text-slate-400">Step inside our labs, studios, and collaborative spaces with guided faculty tours.</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="overview" class="mx-auto max-w-6xl px-6 pb-16">
-				<article id="accessibility-info" class="mb-8 rounded-3xl border border-brand-300/40 bg-brand-500/10 p-8 shadow-xl hidden">
-					<div class="flex items-start gap-4">
-						<span class="material-symbols-rounded text-3xl text-brand-200">accessibility_new</span>
-						<div class="flex-1">
-							<h2 class="text-2xl font-semibold text-white sm:text-3xl">Accessibility Features</h2>
-							<p class="mt-4 text-base leading-relaxed text-brand-100">
-								Amity University is committed to providing an inclusive and accessible environment for all students. 
-								Our campus and online resources are designed to support students with diverse needs.
-							</p>
-							<ul class="mt-4 grid gap-3 text-sm text-brand-100 md:grid-cols-2">
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">elevator</span>
-									<span>Wheelchair accessible buildings with ramps and elevators</span>
-								</li>
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">local_library</span>
-									<span>Accessible library with assistive technology and resources</span>
-								</li>
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">record_voice_over</span>
-									<span>Sign language interpreters and note-taking services</span>
-								</li>
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">psychology</span>
-									<span>Dedicated support team for students with learning disabilities</span>
-								</li>
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">healing</span>
-									<span>Medical facilities with specialized care and counseling</span>
-								</li>
-								<li class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-xl text-brand-200">computer</span>
-									<span>Screen readers and accessibility tools for online learning</span>
-								</li>
-							</ul>
-						</div>
+			<section id="overview" class="mx-auto max-w-7xl px-6 pb-24">
+				<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+					<div class="flex items-center gap-3 mb-6">
+						<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+						<h2 class="text-4xl font-bold text-white">Overview</h2>
 					</div>
-				</article>
-				<article class="rounded-3xl border border-white/10 bg-surface-100/80 p-8 shadow-xl">
-					<h2 class="text-2xl font-semibold text-white sm:text-3xl">Overview</h2>
-					<p class="mt-4 text-base leading-relaxed text-slate-300">
-						Amity University is one of India’s largest private education groups with 11 universities, 25
-						schools, 28 global campuses, and over 250,000 alumni. More than 6,000 faculty members blend
-						academic expertise with industry exposure, delivering learning through 400+ state-of-the-art
-						labs, digital studios, and entrepreneurship zones. Students benefit from international exchange
-						programmes, industry-funded research, and a curriculum co-designed with global partners.
-					</p>
-					<p class="mt-4 text-base leading-relaxed text-slate-300">
-						The university’s innovation ecosystem is anchored by the Amity Innovation Incubator, which has
-						supported 300+ start-ups, including several funded ventures. Scholarships worth ₹300 crores are
-						awarded annually to meritorious and deserving students, making quality education accessible.
-					</p>
+					<div class="space-y-5 text-lg leading-relaxed text-slate-300">
+						<p>
+							Amity University is one of India's largest private education groups with <span class="font-semibold text-white">11 universities</span>, <span class="font-semibold text-white">25 schools</span>, <span class="font-semibold text-brand-200">28 global campuses</span>, and over <span class="font-semibold text-accent-300">250,000 alumni</span>. More than <span class="font-semibold text-white">6,000 faculty members</span> blend academic expertise with industry exposure, delivering learning through <span class="font-semibold text-brand-200">400+ state-of-the-art labs</span>, digital studios, and entrepreneurship zones. Students benefit from international exchange programmes, industry-funded research, and a curriculum co-designed with global partners.
+						</p>
+						<p>
+							The university's innovation ecosystem is anchored by the <span class="font-semibold text-brand-200">Amity Innovation Incubator</span>, which has supported <span class="font-semibold text-white">300+ start-ups</span>, including several funded ventures. Scholarships worth <span class="font-semibold text-accent-300">₹300 crores</span> are awarded annually to meritorious and deserving students, making quality education accessible.
+						</p>
+					</div>
 				</article>
 			</section>
 
-			<section id="courses" class="mx-auto max-w-6xl px-6 pb-20">
+			<section id="courses" class="mx-auto max-w-7xl px-6 pb-28">
 				<div class="grid gap-12 lg:grid-cols-[1.2fr,0.8fr]">
 					<div class="space-y-10">
-						<article class="rounded-3xl border border-white/10 bg-surface-100/70 p-8 shadow-xl">
-							<div class="flex items-center justify-between gap-4">
-								<h3 class="text-xl font-semibold text-white">Popular Courses</h3>
-								<span
-									class="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">Updated</span>
+						<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+							<div class="flex items-center gap-3 mb-6">
+								<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+								<h3 class="text-3xl font-bold text-white">Popular Courses</h3>
 							</div>
-							<ul class="mt-4 grid gap-3 text-sm text-slate-200 md:grid-cols-2">
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">B.Tech (Computer
-									Science, AI, Aerospace, Civil)</li>
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">MBA (Marketing,
-									Finance, HR, International Business)</li>
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">BBA &amp; Integrated
-									MBA</li>
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">B.Design
-									(Communication, Fashion, Product)</li>
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">BA (Journalism &amp;
-									Mass Communication, Psychology)</li>
-								<li class="rounded-2xl border border-white/10 bg-slate-900/60 p-4">M.Tech &amp; Research
-									(Biotechnology, Nanotechnology)</li>
+							<ul class="grid gap-4 text-base text-slate-200 md:grid-cols-2">
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">B.Tech</span> (Computer Science, AI, Aerospace, Civil)
+								</li>
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">MBA</span> (Marketing, Finance, HR, International Business)
+								</li>
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">BBA &amp; Integrated MBA</span>
+								</li>
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">B.Design</span> (Communication, Fashion, Product)
+								</li>
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">BA</span> (Journalism &amp; Mass Communication, Psychology)
+								</li>
+								<li class="group relative rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="font-semibold text-white">M.Tech &amp; Research</span> (Biotechnology, Nanotechnology)
+								</li>
 							</ul>
 						</article>
-						<article class="rounded-3xl border border-white/10 bg-surface-100/60 p-8 shadow-xl">
-							<h3 class="text-xl font-semibold text-white">Academic Highlights</h3>
-							<ul class="mt-4 grid gap-3 text-sm text-slate-200 md:grid-cols-2">
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">science</span>
-									<span>Industry-aligned curriculum with 300+ experiential learning modules</span>
+						<article class="group relative rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+							<div class="flex items-center gap-3 mb-6">
+								<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+								<h3 class="text-3xl font-bold text-white">Academic Highlights</h3>
+							</div>
+							<ul class="grid gap-4 text-base text-slate-200 md:grid-cols-2">
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">science</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Industry-aligned curriculum</span> with 300+ experiential learning modules</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">public</span>
-									<span>International dual-degree and semester abroad options across the USA, UK,
-										Australia &amp; Singapore</span>
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">public</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">International dual-degree</span> and semester abroad options across the USA, UK, Australia &amp; Singapore</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
 									<span
-										class="material-symbols-rounded text-2xl text-brand-200">workspace_premium</span>
-									<span>Amity Innovation Incubator with access to seed funding, mentorship, and
-										investor connects</span>
+										class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">workspace_premium</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Amity Innovation Incubator</span> with access to seed funding, mentorship, and investor connects</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">verified</span>
-									<span>Mandatory internships, certification tracks, and global language proficiency
-										programmes</span>
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-900/40 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">verified</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Mandatory internships</span>, certification tracks, and global language proficiency programmes</span>
 								</li>
 							</ul>
 						</article>
 					</div>
 					<aside class="space-y-6">
-						<div class="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-2xl">
-							<h3 class="flex items-center gap-2 text-xl font-semibold text-white">
-								<span class="material-symbols-rounded text-2xl text-brand-200">camping</span>
-								Campus Life &amp; Facilities
+						<div class="rounded-2xl p-8 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+							<div class="flex items-center gap-3 mb-6">
+								<div class="h-0.5 w-10 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+								<h3 class="flex items-center gap-2 text-2xl font-bold text-white">
+								<span class="material-symbols-rounded text-xl">camping</span>
+									<span>Campus Life &amp; Facilities</span>
 							</h3>
-							<ul class="mt-4 space-y-3 text-sm text-slate-200">
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
+							</div>
+							<ul class="space-y-4 text-base text-slate-200">
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
 									<span
-										class="material-symbols-rounded text-2xl text-brand-200">stadia_controller</span>
-									<span>Olympic-sized sports complex, climbing wall, and e-sports arena</span>
+										class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">stadia_controller</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Olympic-sized sports complex</span>, climbing wall, and e-sports arena</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">biotech</span>
-									<span>Advanced research labs in AI, space science, biotechnology, and
-										forensics</span>
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">biotech</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Advanced research labs</span> in AI, space science, biotechnology, and forensics</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">maps_home_work</span>
-									<span>Smart hostels with biometric access, co-working lounges, and wellness
-										centres</span>
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">maps_home_work</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">Smart hostels</span> with biometric access, co-working lounges, and wellness centres</span>
 								</li>
-								<li class="flex gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-									<span class="material-symbols-rounded text-2xl text-brand-200">diversity_3</span>
-									<span>100+ student clubs, international cultural festivals, and leadership
-										conclaves</span>
+								<li class="group flex gap-4 rounded-xl border border-white/10 bg-slate-950/60 p-5 transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+									<span class="material-symbols-rounded text-3xl text-brand-300 flex-shrink-0">diversity_3</span>
+									<span class="pt-1 leading-relaxed"><span class="font-semibold text-white">100+ student clubs</span>, international cultural festivals, and leadership conclaves</span>
 								</li>
 							</ul>
 						</div>
 						<div
-							class="rounded-3xl border border-brand-400/40 bg-brand-500/10 p-8 text-sm text-brand-100 shadow-lg">
-							<div class="flex items-center gap-3 text-brand-100">
-								<span class="material-symbols-rounded text-xl">tips_and_updates</span>
-								<p class="text-base font-semibold tracking-tight">Scholarship advisory</p>
+							class="rounded-2xl border border-brand-400/30 bg-brand-500/10 p-6 text-sm text-brand-100 shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-brand-400/40">
+							<div class="flex items-center gap-2 text-brand-200">
+								<span class="material-symbols-rounded text-lg">tips_and_updates</span>
+								<p class="text-base font-semibold">Scholarship advisory</p>
 							</div>
 							<p class="mt-3 leading-relaxed text-brand-50/90">
 								Discover merit, sports, defence, and need-based scholarships. Our counsellors will help
 								you secure the right financial aid combination.
 							</p>
 							<a href="#apply"
-								class="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-200 transition hover:text-brand-50">
+								class="mt-3 inline-flex items-center justify-center gap-1 text-sm font-semibold text-brand-200 transition-all hover:text-brand-100">
 								<span>Talk to an advisor</span>
-								<span class="material-symbols-rounded text-lg leading-none">arrow_right_alt</span>
+								<span class="material-symbols-rounded text-base leading-none">arrow_right_alt</span>
 							</a>
 						</div>
 					</aside>
 				</div>
 			</section>
 
-			<section id="placements" class="mx-auto max-w-6xl px-6 pb-20">
-				<div class="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-2xl">
-					<h2 class="flex items-center gap-2 text-2xl font-semibold text-white sm:text-3xl">
-						<span class="material-symbols-rounded text-2xl text-brand-200">trending_up</span>
+			<section id="placements" class="mx-auto max-w-7xl px-6 pb-28">
+				<div class="rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+					<div class="flex items-center gap-3 mb-8">
+						<div class="h-0.5 w-12 bg-gradient-to-r from-brand-400 to-brand-600 rounded-full"></div>
+						<h2 class="flex items-center gap-3 text-4xl font-bold text-white">
+							<span class="material-symbols-rounded text-3xl">trending_up</span>
 						Placements Snapshot
 					</h2>
-					<div class="mt-6 grid gap-6 text-center text-sm text-slate-200 md:grid-cols-3">
-						<div class="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-lg">
-							<span class="material-symbols-rounded text-3xl text-brand-200">workspace_premium</span>
-							<p class="mt-3 text-xl font-semibold text-white">₹ 61.75 LPA</p>
-							<p class="text-xs uppercase tracking-[0.4em] text-slate-500">Highest Package</p>
+					</div>
+					<div class="grid gap-6 text-center md:grid-cols-3">
+						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+							<span class="material-symbols-rounded text-4xl text-brand-300">workspace_premium</span>
+							<p class="mt-4 text-3xl font-bold text-white">₹ 61.75 LPA</p>
+							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Highest Package</p>
 						</div>
-						<div class="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-lg">
-							<span class="material-symbols-rounded text-3xl text-brand-200">payments</span>
-							<p class="mt-3 text-xl font-semibold text-white">₹ 7.8 LPA</p>
-							<p class="text-xs uppercase tracking-[0.4em] text-slate-500">Average Package (Top 25%)</p>
+						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+							<span class="material-symbols-rounded text-4xl text-brand-300">payments</span>
+							<p class="mt-4 text-3xl font-bold text-white">₹ 7.8 LPA</p>
+							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Average Package (Top 25%)</p>
 						</div>
-						<div class="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-lg">
-							<span class="material-symbols-rounded text-3xl text-brand-200">diversity_3</span>
-							<p class="mt-3 text-xl font-semibold text-white">600+</p>
-							<p class="text-xs uppercase tracking-[0.4em] text-slate-500">Recruiters</p>
+						<div class="group rounded-xl p-8 bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-md transition-all duration-200 hover:border-brand-500/30 hover:bg-brand-500/5">
+							<span class="material-symbols-rounded text-4xl text-brand-300">diversity_3</span>
+							<p class="mt-4 text-3xl font-bold text-white">600+</p>
+							<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-3">Recruiters</p>
 						</div>
 					</div>
-					<p class="mt-6 text-sm text-slate-400">
-						Top recruiters include Amazon, Microsoft, Samsung, Deloitte, EY, Accenture, HCL, TCS, and IBM.
+					<div class="mt-8 pt-6 border-t border-white/5">
+						<p class="text-base text-slate-300 leading-relaxed">
+							<span class="font-semibold text-white">Top recruiters include:</span> Amazon, Microsoft, Samsung, Deloitte, EY, Accenture, HCL, TCS, and IBM.
 					</p>
+					</div>
 				</div>
 			</section>
 
-			<section id="apply" class="bg-slate-900/70 py-20">
-				<div class="mx-auto max-w-4xl px-6">
-					<div class="rounded-3xl border border-white/10 bg-slate-950/80 p-8 shadow-2xl backdrop-blur">
-						<div class="flex flex-col gap-4 pb-6 md:flex-row md:items-center md:justify-between">
-							<div>
-								<h2 class="text-3xl font-semibold text-white sm:text-4xl">Ready to apply?</h2>
-								<p class="text-sm text-slate-400">Share your details and the Amity admissions desk will
-									reach out with personalised guidance.</p>
-							</div>
-							<div
-								class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
-								<span class="material-symbols-rounded text-xl text-brand-200">verified_user</span>
-								Secure submission
-							</div>
+			<section id="apply" class="bg-slate-900/30 py-20">
+				<div class="mx-auto max-w-5xl px-6">
+					<div class="rounded-2xl p-10 bg-slate-900/50 border border-white/10 backdrop-blur-sm shadow-lg transition-all duration-200 hover:border-brand-500/30">
+						<div class="pb-6">
+							<h2 class="text-4xl font-bold text-white">Ready to apply?</h2>
+							<p class="text-base text-slate-400 mt-3">Share your details and the Amity admissions desk will
+								reach out with personalised guidance.</p>
 						</div>
-						<form id="lead-form" class="grid gap-6 md:grid-cols-2" novalidate>
-							<label class="text-sm font-medium text-slate-200">
+						<form id="lead-form" class="grid gap-5 md:grid-cols-2" novalidate>
+							<label class="text-sm font-medium text-slate-300">
 								Full Name
 								<input type="text" name="fullName" required placeholder="Priya Sharma"
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
 							</label>
-							<label class="text-sm font-medium text-slate-200">
+							<label class="text-sm font-medium text-slate-300">
 								Email
 								<input type="email" name="email" required placeholder="priya@email.com"
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
 							</label>
-							<label class="text-sm font-medium text-slate-200">
+							<label class="text-sm font-medium text-slate-300">
 								Phone
 								<input type="tel" name="phone" pattern="^\+?[0-9 ]{10,17}$" inputmode="tel"
 									maxlength="17" required placeholder="+91 9876567890"
 									title="Enter 10–15 digits, optional + and spaces allowed"
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40" />
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white placeholder:text-slate-500 transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80" />
 
 							</label>
-							<label class="text-sm font-medium text-slate-200">
+							<label class="text-sm font-medium text-slate-300">
 								State
 								<select name="state" required
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
 									<option value="">Select</option>
 								</select>
 							</label>
-							<label class="text-sm font-medium text-slate-200">
+							<label class="text-sm font-medium text-slate-300">
 								Course Interested
 								<select name="course" required
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
 									<option value="">Select</option>
 								</select>
 							</label>
-							<label class="text-sm font-medium text-slate-200">
+							<label class="text-sm font-medium text-slate-300">
 								Intake Year
 								<select name="intake" required
-									class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-base text-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40">
+									class="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-base text-white transition-all duration-200 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:bg-slate-900/80">
 									<option value="2025">2025</option>
 									<option value="2026">2026</option>
 									<option value="2027">2027</option>
 								</select>
 							</label>
 							<label
-								class="col-span-full flex items-center gap-3 rounded-2xl bg-slate-900/50 px-4 py-4 text-sm text-slate-300 ring-1 ring-white/10">
+								class="col-span-full flex items-center gap-3 rounded-xl bg-slate-900/40 px-4 py-4 text-sm text-slate-300 ring-1 ring-white/10">
 								<input type="checkbox" name="consent" required
 									class="h-5 w-5 flex-shrink-0 rounded border-white/20 bg-slate-900 focus:ring-brand-400">
 								<span>I agree to be contacted regarding my enquiry and confirm that the information
@@ -421,8 +416,8 @@
 							<div
 								class="col-span-full flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 								<button type="submit"
-									class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
-										<span class="material-symbols-rounded text-2xl leading-none">send</span>
+									class="relative inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-brand-600 hover:shadow-lg">
+										<span class="material-symbols-rounded text-xl leading-none">send</span>
 										<span>Submit Application</span>
 									</button>
 								<p id="form-status" class="text-sm text-slate-400" role="status" aria-live="polite"></p>
@@ -433,17 +428,17 @@
 			</section>
 		</main>
 
-		<footer id="contact" class="border-t border-white/5 bg-slate-950/90 py-8 backdrop-blur">
+		<footer id="contact" class="border-t border-white/5 bg-slate-950/80 py-8">
 			<div
 				class="mx-auto flex max-w-6xl flex-col gap-4 px-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
 				<p>© <span id="year"></span> KollegeApply. Educational content for aspiring students.</p>
 				<div class="flex flex-wrap items-center gap-4 text-slate-400">
 					<a href="mailto:hello@kollegeapply.com"
-						class="inline-flex items-center gap-2 transition hover:text-white/90">
+						class="inline-flex items-center gap-2 transition-colors hover:text-white">
 						<span class="material-symbols-rounded text-base">mail</span>
 						hello@kollegeapply.com
 					</a>
-					<a href="tel:+911234567890" class="inline-flex items-center gap-2 transition hover:text-white/90">
+					<a href="tel:+911234567890" class="inline-flex items-center gap-2 transition-colors hover:text-white">
 						<span class="material-symbols-rounded text-base">call</span>
 						+91 12345 67890
 					</a>
@@ -453,15 +448,15 @@
 	</div>
 
 	<div id="fee-modal"
-		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm"
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm"
 		aria-hidden="true" role="dialog" aria-modal="true">
-		<div class="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-slate-900/90 p-8 shadow-2xl">
+		<div class="relative w-full max-w-3xl rounded-2xl p-8 bg-slate-900/90 border border-white/10 backdrop-blur-md shadow-2xl">
 			<button id="close-fee-modal" type="button"
-				class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+				class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white/20 hover:rotate-90"
 				aria-label="Close modal">
 				<span class="material-symbols-rounded">close</span>
 			</button>
-			<h4 id="fee-modal-title" class="text-xl font-semibold text-white">Fee Structure</h4>
+			<h4 id="fee-modal-title" class="text-xl font-bold text-white">Fee Structure</h4>
 			<div id="fee-table" class="mt-4 grid gap-3 text-sm text-slate-200"></div>
 		</div>
 	</div>

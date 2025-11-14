@@ -23,18 +23,15 @@ GITHUB REPOSITORY:
 ------------------
 https://github.com/ezDecode/KollegeApply
 
-DEPLOYMENT DATE:
-----------------
-November 13, 2025
 
 PROJECT STATUS:
 ---------------
-✅ All requirements implemented
-✅ Mobile & desktop responsive
-✅ SSL enabled on all URLs
-✅ Lead forms integrated with Pipedream
-✅ APIs returning simple & nested JSON
-✅ Ready for submission
+All requirements implemented
+Mobile & desktop responsive
+SSL enabled on all URLs
+Lead forms integrated with Pipedream
+APIs returning simple & nested JSON
+Ready for submission
 
 TECHNICAL STACK:
 ----------------
@@ -45,6 +42,6 @@ API Integration: Pipedream Webhooks
 
 CONTACT INFORMATION:
 --------------------
-Repository Owner: ezDecode
+Repository Owner: Akash Choudhury
 Project: KollegeApply
 Date: November 13, 2025

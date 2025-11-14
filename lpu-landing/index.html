@@ -23,8 +23,132 @@
                         color-scheme: dark;
                 }
 
+                * {
+                        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
                 body {
                         font-family: inherit;
+                        position: relative;
+                }
+
+                body::before {
+                        content: "";
+                        position: fixed;
+                        inset: 0;
+                        background:
+                                radial-gradient(circle at 15% 20%, rgba(255, 105, 5, 0.18), transparent 55%),
+                                radial-gradient(circle at 85% 12%, rgba(59, 130, 246, 0.16), transparent 40%),
+                                radial-gradient(circle at 55% 75%, rgba(226, 72, 26, 0.15), transparent 55%);
+                        filter: saturate(120%);
+                        opacity: 0.9;
+                        z-index: -2;
+                }
+
+                body::after {
+                        content: "";
+                        position: fixed;
+                        inset: 0;
+                        background: 
+                                radial-gradient(circle at 15% 85%, rgba(255, 122, 31, 0.12), transparent 45%),
+                                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                        z-index: -1;
+                        opacity: 0.8;
+                }
+
+                .gradient-orb {
+                        position: absolute;
+                        width: 32rem;
+                        height: 32rem;
+                        border-radius: 9999px;
+                        background: radial-gradient(circle, rgba(255, 105, 5, 0.2), transparent 65%);
+                        filter: blur(60px);
+                        opacity: 0.6;
+                }
+
+                .gradient-orb--accent {
+                        background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 60%);
+                }
+
+                .animate-float-slow {
+                        animation: float-slow 16s ease-in-out infinite;
+                }
+
+                @keyframes float-slow {
+                        0%, 100% {
+                                transform: translate3d(0, 0, 0);
+                        }
+                        50% {
+                                transform: translate3d(12px, -18px, 0);
+                        }
+                }
+
+                @keyframes fade-in {
+                        from {
+                                opacity: 0;
+                                transform: translateY(18px);
+                        }
+                        to {
+                                opacity: 1;
+                                transform: translateY(0);
+                        }
+                }
+
+                @keyframes slide-up {
+                        from {
+                                opacity: 0;
+                                transform: translateY(30px);
+                        }
+                        to {
+                                opacity: 1;
+                                transform: translateY(0);
+                        }
+                }
+
+                header {
+                        transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+                }
+
+                nav a {
+                        position: relative;
+                }
+
+                nav a::after {
+                        content: "";
+                        position: absolute;
+                        bottom: -4px;
+                        left: 0;
+                        width: 0;
+                        height: 2px;
+                        background: linear-gradient(90deg, rgba(255, 105, 5, 0.8), rgba(59, 130, 246, 0.8));
+                        transition: width 0.3s ease;
+                }
+
+                nav a:hover::after {
+                        width: 100%;
+                }
+
+                .stat-card {
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .stat-card:hover {
+                        transform: translateY(-6px) scale(1.02);
+                        border-color: rgba(255, 105, 5, 0.4);
+                }
+
+                input:focus, select:focus {
+                        transform: scale(1.01);
+                }
+
+                .course-item {
+                        transition: all 0.3s ease;
+                }
+
+                .course-item:hover {
+                        transform: translateX(4px);
+                        border-color: rgba(255, 105, 5, 0.3);
+                        background: rgba(255, 105, 5, 0.05);
                 }
 
                 .material-symbols-rounded {
@@ -73,47 +197,29 @@
         </script>
 </head>
 
-<body class="bg-slate-950 text-slate-100 antialiased">
-        <div class="relative min-h-screen overflow-hidden">
-                <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_20%,rgba(255,105,5,0.18),transparent_55%),radial-gradient(circle_at_85%_12%,rgba(59,130,246,0.16),transparent_40%),radial-gradient(circle_at_55%_75%,rgba(226,72,26,0.15),transparent_55%)]"
-                        aria-hidden="true"></div>
-
-                <header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/85 backdrop-blur">
-                        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-                                <a href="#hero" class="flex items-center gap-3 text-white no-underline">
-                                        <span class="material-symbols-rounded text-3xl text-brand-300">school</span>
-                                        <span
-                                                class="text-lg font-semibold tracking-tight sm:text-xl">KollegeApply</span>
+<body class="bg-slate-950 text-slate-100 antialiased font-sans relative">
+	<div class="relative min-h-screen overflow-hidden">
+		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(255,105,5,0.08),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(59,130,246,0.06),transparent_50%)] opacity-90"
+			aria-hidden="true"></div>                <header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/90 backdrop-blur-md shadow-sm shadow-black/10">
+                        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+                                <a href="#hero" class="group relative flex items-center gap-3 text-white no-underline transition-all duration-200">
+                                        <span class="material-symbols-rounded text-3xl text-orange-400 transition-colors duration-200 group-hover:text-orange-300">school</span>
+                                        <span class="text-xl font-bold tracking-tight sm:text-2xl text-white">KollegeApply</span>
                                 </a>
-                                <nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 sm:flex">
-                                        <a href="#overview"
-                                                class="transition hover:text-white/90 focus-visible:text-white/90">Overview</a>
-                                        <a href="#courses"
-                                                class="transition hover:text-white/90 focus-visible:text-white/90">Courses</a>
-                                        <a href="#fees"
-                                                class="transition hover:text-white/90 focus-visible:text-white/90">Fees</a>
-                                        <a href="#placements"
-                                                class="transition hover:text-white/90 focus-visible:text-white/90">Placements</a>
-                                        <a href="#apply"
-                                                class="transition hover:text-white/90 focus-visible:text-white/90">Apply</a>
-                                        <button id="toggle-accessibility" type="button"
-                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-slate-800/80 px-4 py-2 text-slate-300 transition hover:bg-slate-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
-                                                aria-label="Toggle accessibility view">
-                                                <span
-                                                        class="material-symbols-rounded text-lg leading-none">accessibility</span>
-                                                <span id="accessibility-status"
-                                                        class="text-xs font-semibold">Show</span>
-                                        </button>
+                                <nav class="hidden items-center gap-8 text-sm font-medium text-slate-400 sm:flex">
+                                        <a href="#overview" class="relative transition-colors duration-200 hover:text-white">Overview</a>
+                                        <a href="#courses" class="relative transition-colors duration-200 hover:text-white">Courses</a>
+                                        <a href="#fees" class="relative transition-colors duration-200 hover:text-white">Fees</a>
+                                        <a href="#placements" class="relative transition-colors duration-200 hover:text-white">Placements</a>
+                                        <a href="#apply" class="relative transition-colors duration-200 hover:text-white">Apply</a>
                                         <a id="switch-university" href="https://amity-landing.netlify.app"
-                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500/20 border border-blue-400/40 px-4 py-2 text-blue-200 transition hover:bg-blue-500/30 hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
-                                                <span
-                                                        class="material-symbols-rounded text-lg leading-none">swap_horiz</span>
-                                                <span class="text-sm font-semibold">Switch to Amity</span>
+                                                class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-blue-500/15 border border-blue-400/30 px-5 py-2.5 text-blue-300 transition-all duration-200 hover:bg-blue-500/25 hover:text-blue-200">
+                                                <span class="material-symbols-rounded text-lg leading-none transition-transform duration-200 group-hover:rotate-90">swap_horiz</span>
+                                                <span class="text-sm font-medium">Switch to Amity</span>
                                         </a>
                                         <a href="#contact"
-                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-4 py-2 text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
-                                                <span
-                                                        class="material-symbols-rounded text-lg leading-none">headset_mic</span>
+                                                class="relative inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-white font-medium shadow-sm transition-all duration-200 hover:bg-orange-600">
+                                                <span class="material-symbols-rounded text-lg leading-none">headset_mic</span>
                                                 <span>Talk to us</span>
                                         </a>
                                 </nav>
@@ -121,8 +227,7 @@
                 </header>
 
                 <main class="relative z-10 pb-24">
-                        <section id="hero"
-                                class="bg-gradient-to-b from-brand-500/10 via-transparent to-transparent pt-16 pb-24">
+                        <section id="hero" class="pt-16 pb-24">
                                 <div
                                         class="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1.15fr,0.85fr]">
                                         <div class="space-y-6">
@@ -165,21 +270,18 @@
                                                 </div>
                                                 <div class="flex flex-wrap gap-3">
                                                         <a href="#apply"
-                                                                class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
-                                                                <span
-                                                                        class="material-symbols-rounded text-xl leading-none">assignment_add</span>
+                                                                class="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange-600">
+                                                                <span class="material-symbols-rounded text-xl leading-none transition-transform group-hover:translate-x-0.5">assignment_add</span>
                                                                 <span>Enquire Now</span>
                                                         </a>
                                                         <button id="download-brochure" type="button"
-                                                                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
-                                                                <span
-                                                                        class="material-symbols-rounded text-xl leading-none">download</span>
+                                                                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-orange-400 hover:text-orange-100 hover:bg-orange-500/10">
+                                                                <span class="material-symbols-rounded text-xl leading-none">download</span>
                                                                 <span>Download Brochure</span>
                                                         </button>
                                                         <button id="open-fee-modal" type="button"
-                                                                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">
-                                                                <span
-                                                                        class="material-symbols-rounded text-xl leading-none">receipt_long</span>
+                                                                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-orange-400 hover:text-orange-100 hover:bg-orange-500/10">
+                                                                <span class="material-symbols-rounded text-xl leading-none">receipt_long</span>
                                                                 <span>View Fee Structure</span>
                                                         </button>
                                                 </div>
@@ -194,69 +296,7 @@
                         </section>
 
                         <section id="overview" class="mx-auto max-w-6xl px-6 pb-16">
-                                <article id="accessibility-info"
-                                        class="mb-8 rounded-3xl border border-brand-300/40 bg-brand-500/10 p-8 shadow-xl hidden">
-                                        <div class="flex items-start gap-4">
-                                                <span
-                                                        class="material-symbols-rounded text-3xl text-brand-200">accessibility_new</span>
-                                                <div class="flex-1">
-                                                        <h2 class="text-2xl font-semibold text-white sm:text-3xl">
-                                                                Accessibility Features</h2>
-                                                        <p class="mt-4 text-base leading-relaxed text-brand-100">
-                                                                Lovely Professional University is dedicated to creating
-                                                                an inclusive campus where every student can thrive.
-                                                                We provide comprehensive accessibility support and
-                                                                facilities across our 600-acre campus.
-                                                        </p>
-                                                        <ul
-                                                                class="mt-4 grid gap-3 text-sm text-brand-100 md:grid-cols-2">
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">accessible</span>
-                                                                        <span>Barrier-free infrastructure with ramps,
-                                                                                lifts, and accessible pathways</span>
-                                                                </li>
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">menu_book</span>
-                                                                        <span>Braille materials and audio books in the
-                                                                                central library</span>
-                                                                </li>
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">support_agent</span>
-                                                                        <span>Dedicated accessibility support staff and
-                                                                                peer mentors</span>
-                                                                </li>
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">developer_board</span>
-                                                                        <span>Assistive technology labs with specialized
-                                                                                software and hardware</span>
-                                                                </li>
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">medical_services</span>
-                                                                        <span>On-campus health center with accessible
-                                                                                medical facilities</span>
-                                                                </li>
-                                                                <li
-                                                                        class="flex items-start gap-3 rounded-2xl border border-brand-300/20 bg-slate-900/60 p-4">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-xl text-brand-200">directions_bus</span>
-                                                                        <span>Accessible campus transportation and
-                                                                                parking facilities</span>
-                                                                </li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                </article>
-                                <article class="rounded-3xl border border-white/10 bg-surface-100/80 p-8 shadow-xl">
+                                <article class="rounded-3xl border border-white/10 bg-slate-900/60 p-8 shadow-xl backdrop-blur-sm">
                                         <h2 class="text-2xl font-semibold text-white sm:text-3xl">Overview</h2>
                                         <p class="mt-4 text-base text-slate-300 leading-relaxed">
                                                 Lovely Professional University (LPU) is recognised for its sprawling
@@ -497,9 +537,8 @@
                                                         <div
                                                                 class="col-span-full flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                                                 <button type="submit"
-                                                                        class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-glow transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200">
-                                                                        <span
-                                                                                class="material-symbols-rounded text-2xl leading-none">send</span>
+                                                                        class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange-600">
+                                                                        <span class="material-symbols-rounded text-2xl leading-none">send</span>
                                                                         <span>Submit Application</span>
                                                                 </button>
                                                                 <p id="form-status" class="text-sm text-slate-400"
