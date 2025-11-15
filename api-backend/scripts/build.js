@@ -42,15 +42,6 @@ async function build() {
     }
   }
   
-  console.log('\nChecking environment configuration:');
-  const envPath = path.join(__dirname, '..', '..', '.env');
-  try {
-    await fs.access(envPath);
-    console.log('[OK] .env file exists');
-  } catch (error) {
-    console.warn('[WARNING] .env file not found');
-  }
-  
   if (hasErrors) {
     console.error('\nBuild failed with errors');
     process.exit(1);
