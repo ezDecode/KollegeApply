@@ -239,6 +239,43 @@ function init() {
 		year.textContent = new Date().getFullYear();
 	}
 	
+	// Hamburger menu toggle
+	const hamburger = byId("hamburger");
+	const mobileMenu = byId("mobile-menu");
+	const menuOverlay = byId("menu-overlay");
+	const switchMobile = byId("switch-university-mobile");
+	
+	if (switchMobile) {
+		switchMobile.href = byId("switch-university")?.href || defaultSwitchUrl;
+	}
+	
+	function toggleMenu() {
+		hamburger?.classList.toggle("active");
+		mobileMenu?.classList.toggle("active");
+		menuOverlay?.classList.toggle("active");
+		document.body.style.overflow = mobileMenu?.classList.contains("active") ? "hidden" : "";
+	}
+	
+	if (hamburger) {
+		hamburger.addEventListener("click", toggleMenu);
+	}
+	
+	if (menuOverlay) {
+		menuOverlay.addEventListener("click", toggleMenu);
+	}
+	
+	// Close menu when clicking on a link
+	if (mobileMenu) {
+		const menuLinks = mobileMenu.querySelectorAll("a");
+		menuLinks.forEach(link => {
+			link.addEventListener("click", (e) => {
+				if (link.getAttribute("href").startsWith("#")) {
+					toggleMenu();
+				}
+			});
+		});
+	}
+	
 	const stateSelect = document.querySelector('select[name="state"]');
 	populateSelect(stateSelect, INDIAN_STATES);
 	
